@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:id="@+id/backed"
+    android:background="@color/white"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            app:titleTextColor="@color/white"
+            app:subtitleTextColor="@color/white"
+            android:layout_height="56dp"
+            android:theme="@style/toolbar_theme"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <ListView
+                android:id="@+id/serachServidesed"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabsPays"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabBackground="@drawable/tab_layout_selector"
+                android:textSize="12dp"
+                android:textAlignment="center"
+                app:tabIndicatorColor="@color/colorPrimary"
+                app:tabGravity="fill"
+                android:visibility="gone"
+                app:tabMode="fixed"
+                app:tabTextAppearance="@style/MineCustomTabText"
+                android:background="@color/white"
+                app:tabTextColor="@color/black"
+                app:tabIndicatorHeight="0dp"
+                app:tabPaddingBottom="5dp"
+                app:tabPaddingTop="3dp"
+
+                />
+
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viepage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+
+
+</FrameLayout>

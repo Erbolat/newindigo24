@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        tools:context=".MainActivity"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <ImageView
+            android:id="@+id/iconBot"
+            android:layout_width="130dp"
+            android:layout_height="150dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="-28dp"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="261dp"
+            app:srcCompat="@drawable/icon_bot"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="311dp"
+            tools:layout_editor_absoluteY="290dp" />
+
+        <ImageView
+            android:id="@+id/icon_wallet"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            app:srcCompat="@drawable/wallet2"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="680dp" />
+
+
+        <TextView
+            android:id="@+id/tvProfile"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="false"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="265dp"
+            android:layout_marginBottom="612dp"
+            android:gravity="center"
+            android:text="профиль"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            tools:ignore="MissingConstraints" />
+
+
+        <ImageView
+            android:id="@+id/icon_profile"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="-4dp"
+            app:srcCompat="@drawable/profil"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="102dp"
+            android:layout_marginBottom="448dp"
+            android:text="новости"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="179dp"
+            tools:layout_editor_absoluteY="187dp" />
+
+        <ImageView
+            android:id="@+id/icon2"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="86dp"
+
+            android:layout_marginBottom="397dp"
+            app:srcCompat="@drawable/icon2"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="216dp"
+            tools:layout_editor_absoluteY="166dp" />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="144dp"
+
+            android:layout_marginBottom="380dp"
+            android:text="онлайн ТВ"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="79dp"
+            tools:layout_editor_absoluteY="246dp" />
+
+        <ImageView
+            android:id="@+id/icon3"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="134dp"
+
+            android:layout_marginBottom="329dp"
+            app:srcCompat="@drawable/icon"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="134dp"
+            tools:layout_editor_absoluteY="246dp" />
+
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="157dp"
+            android:layout_marginBottom="303dp"
+            android:text="магазин"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="79dp"
+            tools:layout_editor_absoluteY="357dp" />
+
+        <ImageView
+            android:id="@+id/icon4"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="135dp"
+
+            android:layout_marginBottom="256dp"
+            app:srcCompat="@drawable/icon4"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="134dp"
+            tools:layout_editor_absoluteY="343dp" />
+
+        <TextView
+            android:id="@+id/tv5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="100dp"
+            android:layout_marginBottom="229dp"
+            android:text="развлечения"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="166dp"
+            tools:layout_editor_absoluteY="454dp" />
+
+        <ImageView
+            android:id="@+id/icon5"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="96dp"
+            android:layout_marginBottom="178dp"
+            app:srcCompat="@drawable/icon5"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="166dp"
+            tools:layout_editor_absoluteY="439dp" />
+
+        <TextView
+            android:id="@+id/tv6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="27dp"
+            android:layout_marginBottom="211dp"
+            android:text="услуги"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="300dp"
+            tools:layout_editor_absoluteY="500dp" />
+
+        <ImageView
+            android:id="@+id/icon6"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="156dp"
+            app:srcCompat="@drawable/icon6"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="300dp"
+            tools:layout_editor_absoluteY="500dp" />
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="476dp"
+            android:text="сообщества"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="250dp"
+            tools:layout_editor_absoluteY="500dp" />
+
+        <ImageView
+            android:id="@+id/icon1"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="3dp"
+
+            android:layout_marginBottom="423dp"
+            app:srcCompat="@drawable/icon1"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="216dp"
+            tools:layout_editor_absoluteY="166dp" />
+
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:id="@+id/swipe"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+
+        android:layout_height="match_parent">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            app:titleTextColor="@color/white"
+            app:subtitleTextColor="@color/white"
+            android:layout_height="56dp"
+            app:title="Сервис"
+            android:theme="@style/toolbar_theme"/>
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_marginTop="15dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:scaleType="centerCrop"
+        android:id="@+id/img"/>
+    <TextView
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvPlaceholder"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="12sp"
+        android:textColor="@color/black" />
+        <EditText
+            android:id="@+id/editLogin"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/white_back2"
+            android:inputType="number"
+            android:paddingBottom="7dp"
+            android:paddingTop="7dp"
+            android:textAlignment="textStart"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="10dp"
+            android:typeface="monospace"
+            tools:ignore="MissingConstraints,RtlCompat,TextFields" />
+
+        <TextView
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:text="Введите сумму:"
+            android:textSize="12sp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black" />
+        <EditText
+            android:id="@+id/editSumm"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/white_back2"
+            android:inputType="number"
+            android:paddingBottom="7dp"
+            android:paddingTop="7dp"
+            android:textAlignment="textStart"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="10dp"
+            android:typeface="monospace"
+            tools:ignore="MissingConstraints,RtlCompat,TextFields" />
+
+
+        <Button
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnPay"
+            android:text="Оплатить"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/white_back2"
+            android:textSize="16sp"
+            android:textColor="@color/whiteBlue" />
+
+    </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

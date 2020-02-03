@@ -1,0 +1,144 @@
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimary"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginStart="80dp"
+        android:gravity="center"
+        android:layout_marginEnd="80dp"
+        android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:textSize="22sp"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:id="@+id/tv"
+        android:layout_marginBottom="15dp"
+        android:background="@color/colorPrimary"
+        android:text="Регистрация"/>
+
+    <EditText
+        android:id="@+id/editPhone"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:paddingStart="16dp"
+        android:background="@drawable/white_back"
+        android:hint="Телефон*"
+        android:inputType="number"
+        android:paddingBottom="7dp"
+        android:paddingTop="7dp"
+        android:textAlignment="textStart"
+        android:textSize="17sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginBottom="10dp"
+        android:typeface="monospace"
+        tools:ignore="MissingConstraints,RtlCompat,TextFields" />
+
+        <EditText
+        android:id="@+id/editName"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:inputType="text|textNoSuggestions"
+        android:hint="Имя*"
+        android:paddingStart="16dp"
+        android:background="@drawable/white_back"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:layout_marginBottom="10dp"
+        android:textAlignment="textStart"
+        android:textSize="17sp"
+        android:textColor="@color/colorPrimary"
+        android:typeface="monospace"
+        tools:ignore="MissingConstraints,RtlCompat,TextFields" />
+
+        <EditText
+            android:id="@+id/editMail"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:paddingStart="16dp"
+            android:visibility="gone"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/white_back"
+            android:hint="Email*"
+            android:inputType="textEmailAddress"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:textAlignment="textStart"
+            android:textSize="17sp"
+            android:textColor="@color/colorPrimary"
+            android:typeface="monospace"
+            tools:ignore="MissingConstraints,RtlCompat,TextFields" />
+
+        <EditText
+            android:id="@+id/editPass"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/white_back"
+            android:hint="Пароль*"
+            android:inputType="textPassword"
+            android:paddingStart="16dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:textAlignment="textStart"
+            android:textSize="17sp"
+            android:textColor="@color/colorPrimary"
+            android:typeface="monospace"
+            tools:ignore="MissingConstraints,RtlCompat,TextFields" />
+
+        <EditText
+            android:id="@+id/editRenewPass"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/white_back"
+            android:hint="Повторите пароль*"
+            android:inputType="textPassword"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:textAlignment="textStart"
+            android:paddingStart="16dp"
+            android:textSize="17sp"
+            android:textColor="@color/colorPrimary"
+            android:typeface="monospace"
+            tools:ignore="MissingConstraints,RtlCompat,TextFields" />
+
+        <TextView
+            android:id="@+id/tvRegistr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@color/colorPrimary"
+            android:text="Зарегистрироваться"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvAuth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@color/colorPrimary"
+            android:text="Войти"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
