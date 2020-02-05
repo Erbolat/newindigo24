@@ -46,4 +46,14 @@ public interface Interface {
     Call<ResponseBody> getPayments(@Field("unique") String unique, @Field("customerID") String customerID, @Field("serviceID") String serviceID );
 
 
+    @FormUrlEncoded
+    @POST("service/pay")
+    Call<ResponseBody> setPay(@Field("unique") String unique, @Field("customerID") String customerID, @Field("amount") String amount , @Field("serviceID") String serviceID, @Field("account") String account);
+
+
+    @FormUrlEncoded
+    @POST("settings/save")
+    Call<ResponseBody> editProfile(@Field("unique") String unique, @Field("customerID") String customerID, @Field("name") String name , @Field("city") String city );
+
+
 }

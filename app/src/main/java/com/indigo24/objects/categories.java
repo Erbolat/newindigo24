@@ -1,20 +1,10 @@
 package com.indigo24.objects;
 
 public class categories {
-    String id, logo, title, comission;
+    String id, logo, title, comission, count;
 
-    public categories(String id, String logo, String title, String comission) {
-        this.id = id;
-        this.logo = logo;
-        this.title = title;
-        this.comission = comission;
-    }
 
     public categories() {
-        this.id = id;
-        this.logo = logo;
-        this.title = title;
-        this.comission = comission;
     }
 
     public String getId() {
@@ -47,5 +37,13 @@ public class categories {
 
     public void setComission(String comission) {
         this.comission = comission;
+    }
+
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
     }
 }

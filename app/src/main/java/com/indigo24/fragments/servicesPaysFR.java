@@ -74,7 +74,7 @@ public class servicesPaysFR extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        adapter = new AdapterCateg(getContext(),arrServices);
+        adapter = new AdapterCateg(getContext(),arrServices, "services");
         listServices.setAdapter(adapter);
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -128,7 +128,7 @@ public class servicesPaysFR extends Fragment {
                                 categ.setComission(jsCateg.getJSONObject(i).getString("commission"));
                                 arrServices.add(categ);
                             }
-                            adapter = new AdapterCateg(getContext(),arrServices);
+                            adapter = new AdapterCateg(getContext(),arrServices, "services");
                             listServices.setAdapter(adapter);
                             swipe.setRefreshing(false);
                         }

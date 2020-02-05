@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:padding="20dp"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        android:src="@drawable/logo_indigo"/>
+
+    <EditText
+        android:layout_width="200dp"
+        android:background="@drawable/white_back"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="5dp"
+        android:id="@+id/editName"
+        android:paddingBottom="5dp"
+        android:layout_height="wrap_content"
+        tools:ignore="UnusedAttribute" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:background="@drawable/white_back"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="5dp"
+        android:id="@+id/editCity"
+        android:paddingBottom="5dp"
+        android:layout_height="wrap_content"
+        tools:ignore="UnusedAttribute" />
+
+    <Button
+        android:layout_width="200dp"
+        android:background="@drawable/white_back"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="10dp"
+        android:text="Сохранить"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/btnSave"
+        android:layout_height="wrap_content"
+        tools:ignore="UnusedAttribute" />
+</LinearLayout>

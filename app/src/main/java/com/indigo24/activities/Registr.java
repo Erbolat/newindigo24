@@ -11,9 +11,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +25,6 @@ import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -37,7 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Registr extends AppCompatActivity {
     @BindView(R.id.editPhone)
     EditText phoneInput;
-    @BindView(R.id.editName)
+    @BindView(R.id.editCity)
     EditText editUsername;
     @BindView(R.id.editMail)
     EditText editUserEmail;

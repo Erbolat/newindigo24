@@ -23,11 +23,13 @@ public class AdapterCateg extends BaseAdapter {
     ArrayList<categories> objects;
     ImageView img;
     TextView tvTitle, tvCount;
+    String type;
     Map<String, String> map = new HashMap<String, String>();
 
-    public AdapterCateg(Context context, ArrayList<categories> categ) {
+    public AdapterCateg(Context context, ArrayList<categories> categ, String type) {
         ctx = context;
         objects = categ;
+        this.type = type;
         lInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -61,16 +63,12 @@ public class AdapterCateg extends BaseAdapter {
         img = view.findViewById(R.id.img);
 
         tvTitle.setText(objects.get(position).getTitle());
+        if(type.equals("categ")) {
+            tvCount.setVisibility(View.VISIBLE);
+            tvCount.setText(objects.get(position).getCount());
+        }
+        else tvCount.setVisibility(View.GONE);
         Picasso.get().load(baseIMG+objects.get(position).getLogo()).into(img);
-
-//        view.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
-
-
         return view;
     }
 

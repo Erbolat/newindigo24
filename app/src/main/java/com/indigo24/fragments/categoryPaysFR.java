@@ -73,7 +73,7 @@ public class categoryPaysFR extends Fragment {
         unique  = sPref.getString("unique","");
         getCategory();
 
-        adapter = new AdapterCateg(getContext(),arrCateg);
+        adapter = new AdapterCateg(getContext(),arrCateg,"categ");
         listCateg.setAdapter(adapter);
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -84,8 +84,10 @@ public class categoryPaysFR extends Fragment {
         listCateg.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                if(!arrCateg.get(position).getCount().equals("0")) {
                 Bundle bundle=new Bundle();
-                bundle.putString("categID", position+1+"");
+                bundle.putString("categID", arrCateg.get(position).getId()+"");
                 Fragment fragment = new servicesPaysFR();
                 fragment.setArguments(bundle);
                 FragmentManager fm = getActivity().getSupportFragmentManager();
@@ -93,6 +95,8 @@ public class categoryPaysFR extends Fragment {
                 transaction.replace(R.id.contentFragment, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
+                }
+                else Toast.makeText(getContext(), "Ближайшее время появится сервисы", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -114,16 +118,19 @@ public class categoryPaysFR extends Fragment {
                     JSONObject jsonObject = new JSONObject(response.body().string());
                     if(jsonObject.getBoolean("success")){
                         JSONArray jsCateg = jsonObject.getJSONArray("categories");
+                        Log.e("BEKA1",jsCateg.toString()+"");
                         if(jsCateg.length()>0){
                             for(int i=0; i<jsCateg.length(); i++)
                             {
+                                Log.e("BEKA1",jsCateg.getJSONObject(i).getInt("count")+"");
                                 categories categ = new categories();
                                 categ.setId(jsCateg.getJSONObject(i).getString("ID"));
                                 categ.setLogo(jsCateg.getJSONObject(i).getString("logo"));
+                                categ.setCount(jsCateg.getJSONObject(i).getInt("count")+"");
                                 categ.setTitle(jsCateg.getJSONObject(i).getString("title"));
                                 arrCateg.add(categ);
                             }
-                            adapter = new AdapterCateg(getContext(),arrCateg);
+                            adapter = new AdapterCateg(getContext(),arrCateg, "categ");
                             listCateg.setAdapter(adapter);
                             swipe.setRefreshing(false);
                         }
