@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,52 +38,45 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.nio.InvalidMarkException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import butterknife.BindView;
+import butterknife.BindViews;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class walletFR extends Fragment {
+
+    @BindViews({R.id.btnPayCateg})
+    View[] viewBtns;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Toolbar toolbar;
         View v = inflater.inflate(R.layout.fr_wallet, container, false);
+        ButterKnife.bind(this,v);
 
-        toolbar = (Toolbar) v.findViewById(R.id.toolbar);
+        return  v;
+    }
 
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        toolbar.setTitle("Кошелек");
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().startActivity(new Intent(getActivity(), MainActivity.class));
-                getActivity().finish();
-            }
-        });
-
-
-
-
-
-
-
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = new allPaysFR();
+    @OnClick({R.id.btnPayCateg})
+    void onSaveClick(View view) {
+        switch (view.getId()) {
+            case R.id.btnPayCateg: {
+            Fragment fragment = new allPaysFR();
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = fm.beginTransaction();
                 transaction.replace(R.id.contentFragment, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
-
+                break;
             }
-        });
-
-        return  v;
+        }
     }
 }

@@ -151,7 +151,7 @@ public class itemPaysFR extends Fragment {
                             @Override
                             public void run() {
                                 try {
-                                    Toast.makeText(getContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                                     getActivity().getSupportFragmentManager().popBackStack();
 
                                 } catch (JSONException e) {
@@ -162,7 +162,7 @@ public class itemPaysFR extends Fragment {
                         swipe.setRefreshing(false);
                     }
                     else {
-                        Toast.makeText(getContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                         swipe.setRefreshing(false);
                     }
 
@@ -174,7 +174,7 @@ public class itemPaysFR extends Fragment {
             @Override
             public void onFailure(retrofit2.Call<ResponseBody> call, Throwable t) {
                 swipe.setRefreshing(false);
-                Toast.makeText(getContext(), "Ошибка! или Проверьте доступ к Интернету", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Ошибка! или Проверьте доступ к Интернету", Toast.LENGTH_LONG).show();
                 t.printStackTrace();
             }
         });

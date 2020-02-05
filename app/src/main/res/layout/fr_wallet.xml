@@ -1,276 +1,494 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_gravity="center"
-    android:background="@color/colorPrimary"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
-
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <RelativeLayout
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="-60dp">
+        android:background="@color/colorPrimary"
+        tools:context=".MainActivity">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:theme="@style/toolbar_theme"
-            app:titleTextColor="@color/white"
-            tools:ignore="MissingConstraints" />
-
-        <Button
-            android:id="@+id/btn5"
-            android:layout_width="123dp"
-            android:layout_height="56dp"
+        <ImageView
+            android:id="@+id/Balans"
+            android:layout_width="133dp"
+            android:layout_height="34dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="540dp"
-            android:background="@color/whiteBlue"
-            android:gravity="center"
-            android:text="Пополнить"
-            android:textAllCaps="false"
-            android:textSize="14sp"
-            android:typeface="sans" />
+            android:layout_marginRight="230dp"
+            android:layout_marginBottom="655dp"
+            app:srcCompat="@drawable/balance"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="45dp"
+            tools:layout_editor_absoluteY="50dp" />
 
-        <Button
-            android:id="@+id/btn1"
-            android:layout_width="102dp"
-            android:layout_height="11dp"
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="20dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="267dp"
-            android:layout_marginBottom="102dp"
-            android:background="#FFFFFF"
+            android:layout_marginRight="264dp"
+            android:layout_marginBottom="681dp"
             android:gravity="center"
-            android:textSize="12sp" />
+            android:text="Баланс"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="90dp"
+            tools:layout_editor_absoluteY="30dp" />
 
-        <Button
-            android:id="@+id/btn0"
-            android:layout_width="102dp"
-            android:layout_height="11dp"
+        <ImageView
+            android:layout_width="133dp"
+            android:layout_height="34dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="231dp"
+            android:layout_marginBottom="603dp"
+            app:srcCompat="@drawable/bonus"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="45dp"
+            tools:layout_editor_absoluteY="112dp" />
+
+        <TextView
+            android:id="@+id/Bonus"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="268dp"
+            android:layout_marginBottom="632dp"
+            android:gravity="center"
+            android:text="Бонус"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="90dp"
+            tools:layout_editor_absoluteY="92dp" />
+
+        <ImageView
+            android:id="@+id/Cashback"
+            android:layout_width="133dp"
+            android:layout_height="34dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="14dp"
+            android:layout_marginBottom="657dp"
+            app:srcCompat="@drawable/cashback"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="242dp"
+            tools:layout_editor_absoluteY="50dp" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="51dp"
+            android:layout_marginBottom="684dp"
+            android:gravity="center"
+            android:text="Кэшбэк"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="289dp"
+            tools:layout_editor_absoluteY="30dp" />
+
+        <ImageView
+            android:layout_width="133dp"
+            android:layout_height="34dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_marginRight="17dp"
-            android:layout_marginBottom="102dp"
-            android:background="#FFFFFF"
-            android:gravity="center"
-            android:textSize="12sp" />
+            android:layout_marginBottom="604dp"
+            app:srcCompat="@drawable/referals"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="242dp"
+            tools:layout_editor_absoluteY="112dp" />
 
-        <Button
-            android:id="@+id/pay2"
-            android:layout_width="127dp"
-            android:layout_height="36dp"
+        <TextView
+            android:id="@+id/Referals"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="122dp"
-            android:layout_marginBottom="180dp"
-            android:background="@color/whiteBlue"
+            android:layout_marginRight="52dp"
+            android:layout_marginBottom="633dp"
             android:gravity="center"
-            android:typeface="sans"
-            android:textAllCaps="false"
-            android:text="Оплатить"
-            android:textSize="16sp" />
+            android:text="Рефералы"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="289dp"
+            tools:layout_editor_absoluteY="92dp" />
 
-        <Button
-            android:id="@+id/btn11"
-            android:layout_width="128dp"
+
+        <ImageView
+            android:id="@+id/OplBonus"
+            android:layout_width="342dp"
+            android:layout_height="49dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="545dp"
+            app:srcCompat="@drawable/bonuss"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="42dp"
+            tools:layout_editor_absoluteY="172dp" />
+
+        <TextView
+            android:id="@+id/txt1"
+            android:layout_width="154dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="109dp"
+            android:layout_marginBottom="525dp"
+            android:gravity="center"
+            android:text="оплатить бонусом"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="128dp"
+            tools:layout_editor_absoluteY="221dp" />
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="59dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="166dp"
+            android:layout_marginBottom="451dp"
+            app:srcCompat="@drawable/wwalet"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="168dp"
+            tools:layout_editor_absoluteY="261dp" />
+
+        <ImageView
+            android:layout_width="164dp"
+            android:layout_height="43dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="459dp"
+            app:srcCompat="@drawable/right"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="243dp"
+            tools:layout_editor_absoluteY="269dp" />
+
+        <TextView
+            android:id="@+id/txt3"
+            android:layout_width="148dp"
+            android:layout_height="33dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="465dp"
+            android:gravity="center"
+            android:text="вывести"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="253dp"
+            tools:layout_editor_absoluteY="271dp" />
+
+        <ImageView
+            android:layout_width="164dp"
+            android:layout_height="43dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="245dp"
+            android:layout_marginBottom="461dp"
+            app:srcCompat="@drawable/left"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="3dp"
+            tools:layout_editor_absoluteY="269dp" />
+
+        <TextView
+            android:id="@+id/txt2"
+            android:layout_width="148dp"
+            android:layout_height="33dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="258dp"
+            android:layout_marginBottom="466dp"
+            android:gravity="center"
+            android:text="пополнить"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="3dp"
+            tools:layout_editor_absoluteY="271dp" />
+
+        <ImageView
+            android:layout_width="96dp"
+            android:layout_height="59dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="150dp"
+            android:layout_marginBottom="6dp"
+            app:srcCompat="@drawable/qr"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="157dp"
+            tools:layout_editor_absoluteY="656dp" />
+
+        <ImageView
+            android:layout_width="136dp"
+            android:layout_height="64dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="33dp"
+            android:layout_marginBottom="370dp"
+            app:srcCompat="@drawable/background"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="21dp"
+            tools:layout_editor_absoluteY="320dp" />
+
+        <TextView
+            android:id="@+id/txt4"
+            android:layout_width="124dp"
             android:layout_height="25dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="235dp"
-            android:layout_marginBottom="500dp"
-            android:background="#FFFFFF"
+            android:layout_marginRight="245dp"
+            android:layout_marginBottom="388dp"
+            android:gravity="center"
             android:text="история транзакции"
-            android:textSize="10sp" />
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="26dp"
+            tools:layout_editor_absoluteY="337dp" />
 
-        <Button
-            android:id="@+id/btn7"
-            android:layout_width="128dp"
+        <ImageView
+            android:layout_width="136dp"
+            android:layout_height="64dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="238dp"
+            android:layout_marginBottom="368dp"
+            app:srcCompat="@drawable/background"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="253dp"
+            tools:layout_editor_absoluteY="320dp" />
+
+        <TextView
+            android:id="@+id/txt5"
+            android:layout_width="124dp"
             android:layout_height="25dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="24dp"
-            android:layout_marginBottom="500dp"
-            android:background="#FFFFFF"
-            android:text="взять займ"
-            android:textSize="10sp" />
+            android:layout_marginRight="43dp"
+            android:layout_marginBottom="390dp"
+            android:gravity="center"
+            android:text="кредит"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="260dp"
+            tools:layout_editor_absoluteY="337dp" />
 
-        <Button
-            android:id="@+id/btn8"
-            android:layout_width="128dp"
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="136dp"
+            android:layout_height="64dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="33dp"
+            android:layout_marginBottom="241dp"
+            app:srcCompat="@drawable/background"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="253dp"
+            tools:layout_editor_absoluteY="384dp" />
+
+        <TextView
+            android:id="@+id/txt7"
+            android:layout_width="124dp"
             android:layout_height="25dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="24dp"
-            android:layout_marginBottom="460dp"
-            android:background="#FFFFFF"
-            android:text="погасить займ"
-            android:textSize="10sp" />
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="324dp"
+            android:gravity="center"
+            android:text="кэшбэк история"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="260dp"
+            tools:layout_editor_absoluteY="402dp" />
 
-        <Button
-            android:id="@+id/btn9"
-            android:layout_width="128dp"
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="136dp"
+            android:layout_height="64dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="236dp"
+            android:layout_marginBottom="174dp"
+            app:srcCompat="@drawable/background"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="21dp"
+            tools:layout_editor_absoluteY="384dp" />
+
+        <TextView
+            android:id="@+id/txt6"
+            android:layout_width="124dp"
             android:layout_height="25dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="24dp"
-            android:layout_marginBottom="420dp"
-            android:background="#FFFFFF"
-            android:text="обменять валюту"
-            android:textSize="10sp" />
-
-        <Button
-            android:id="@+id/btn10"
-            android:layout_width="128dp"
-            android:layout_height="25dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="24dp"
-            android:layout_marginBottom="380dp"
-            android:background="#FFFFFF"
-            android:text="мои карты"
-            android:textSize="10sp" />
-
-        <Button
-            android:id="@+id/btn14"
-            android:layout_width="128dp"
-            android:layout_height="25dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="235dp"
-            android:layout_marginBottom="380dp"
-            android:background="#FFFFFF"
-            android:text="вложить в бизнес"
-            android:textSize="10sp" />
-
-        <Button
-            android:id="@+id/btn13"
-            android:layout_width="128dp"
-            android:layout_height="25dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="235dp"
-            android:layout_marginBottom="420dp"
-            android:background="#FFFFFF"
-            android:text="отправить деньги"
-            android:textSize="10sp" />
-
-        <Button
-            android:id="@+id/btn12"
-            android:layout_width="128dp"
-            android:layout_height="25dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="235dp"
-            android:layout_marginBottom="460dp"
-            android:background="#FFFFFF"
+            android:layout_marginRight="246dp"
+            android:layout_marginBottom="319dp"
+            android:gravity="center"
             android:text="совершить платеж"
-            android:textSize="10sp" />
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="26dp"
+            tools:layout_editor_absoluteY="402dp" />
 
-        <Button
-            android:id="@+id/btn6"
-            android:layout_width="123dp"
-            android:layout_height="56dp"
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="136dp"
+            android:layout_height="64dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="288dp"
-            android:layout_marginBottom="540dp"
-            android:background="@color/whiteBlue"
-            android:text="Вывести"
-            android:textAllCaps="false"
-            android:textSize="14sp"
-            android:typeface="sans" />
-
-        <Button
-            android:id="@+id/button16"
-            android:layout_width="308dp"
-            android:layout_height="9dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="47dp"
-            android:layout_marginBottom="615dp"
-            android:background="@color/whiteBlue" />
+            android:layout_marginRight="33dp"
+            android:layout_marginBottom="174dp"
+            app:srcCompat="@drawable/background"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="253dp"
+            tools:layout_editor_absoluteY="448dp" />
 
         <TextView
-            android:id="@+id/pay3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/txt9"
+            android:layout_width="124dp"
+            android:layout_height="25dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="143dp"
-            android:layout_marginBottom="44dp"
-            android:textColor="@color/whiteBlue"
-            android:textSize="14sp"
-            android:text="оплатить QR" />
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="260dp"
+            android:gravity="center"
+            android:text="обменять валюту"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="260dp"
+            tools:layout_editor_absoluteY="466dp" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="136dp"
+            android:layout_height="64dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="236dp"
+            android:layout_marginBottom="238dp"
+            app:srcCompat="@drawable/background"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="21dp"
+            tools:layout_editor_absoluteY="448dp" />
 
         <TextView
-            android:id="@+id/pay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/txt8"
+            android:layout_width="124dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="242dp"
+            android:layout_marginBottom="258dp"
+            android:gravity="center"
+            android:text="отправить деньги"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="26dp"
+            tools:layout_editor_absoluteY="466dp" />
+
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="136dp"
+            android:layout_height="64dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="33dp"
+            android:layout_marginBottom="304dp"
+            app:srcCompat="@drawable/background"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="253dp"
+            tools:layout_editor_absoluteY="512dp" />
+
+        <TextView
+            android:id="@+id/txt13"
+            android:layout_width="124dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="193dp"
+            android:gravity="center"
+            android:text="мои карты"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="260dp"
+            tools:layout_editor_absoluteY="529dp" />
+
+
+        <ImageView
+            android:id="@+id/im"
+            android:layout_width="136dp"
+            android:layout_height="64dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="237dp"
+            android:layout_marginBottom="302dp"
+            app:srcCompat="@drawable/background"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="21dp"
+            tools:layout_editor_absoluteY="512dp" />
+
+        <TextView
+            android:id="@+id/txt10"
+            android:layout_width="124dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="240dp"
+            android:layout_marginBottom="195dp"
+            android:gravity="center"
+            android:text="вложить в бизнес"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="26dp"
+            tools:layout_editor_absoluteY="529dp" />
+
+        <ImageView
+            android:id="@+id/btnPayCateg"
+            android:layout_width="136dp"
+            android:layout_height="64dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_marginRight="130dp"
-            android:layout_marginBottom="235dp"
-            android:textSize="14sp"
-            android:typeface="sans"
-            android:textColor="@color/whiteBlue"
-            android:text="оплатить бонусом" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="88dp"
-            android:layout_marginTop="10dp"
-            android:layout_height="86dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="143dp"
-            android:layout_marginBottom="68dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/qr" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="154dp"
-            android:layout_marginBottom="260dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/money" />
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="348dp"
-            android:layout_marginBottom="687dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/user" />
+            android:layout_marginBottom="65dp"
+            app:srcCompat="@drawable/paybalanss"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="137dp"
+            tools:layout_editor_absoluteY="592dp" />
 
         <TextView
-            android:id="@+id/tvName"
-            android:layout_width="wrap_content"
-            android:text="Name"
-            android:layout_height="30dp"
+            android:layout_width="95dp"
+            android:layout_height="25dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="280dp"
-            android:layout_marginBottom="687dp"
-            android:textSize="22sp"
-            android:textColor="@color/white"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/user" />
+            android:layout_marginRight="153dp"
+            android:layout_marginBottom="84dp"
+            android:gravity="center"
+            android:text="оплатить"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="158dp"
+            tools:layout_editor_absoluteY="612dp" />
     </RelativeLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
