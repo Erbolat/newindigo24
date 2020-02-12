@@ -32,7 +32,7 @@ public class GifActivity extends AppCompatActivity {
     }
 
     private void intent(final int i) {
-        new CountDownTimer(2500, 500) {
+        new CountDownTimer(5000, 500) {
             public void onTick(long millisUntilFinished) {
             }
             public void onFinish() {

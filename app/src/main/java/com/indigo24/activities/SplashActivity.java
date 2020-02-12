@@ -14,12 +14,13 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.indigo24.MainApp;
 import com.indigo24.R;
 
 public class SplashActivity extends AppCompatActivity {
     SharedPreferences sPref;
     String phone = "", unique="", id="";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +44,8 @@ public class SplashActivity extends AppCompatActivity {
             }
             public void onFinish() {
                 if(i==1)
-                    startActivity(new Intent(SplashActivity.this,MainActivity.class));
-                else startActivity(new Intent(SplashActivity.this,Auth.class));
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                else startActivity(new Intent(SplashActivity.this,Auth2.class));
                 finish();
             }
         }.start();

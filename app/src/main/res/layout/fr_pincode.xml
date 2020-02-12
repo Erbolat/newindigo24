@@ -2,321 +2,322 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
     android:layout_height="match_parent"
     android:clickable="true">
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:ignore="MissingConstraints">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="0dp"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/repeat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:inputType="number"
-            android:maxEms="4"/>
-
-        <EditText
-            android:id="@+id/pinCodes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:inputType="number"
-            android:maxEms="4"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            android:id="@+id/tvName"
-            android:textSize="20sp"
-            android:text="Установка PIN кода"
-            android:layout_marginBottom="20dp"/>
-
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
-
-            <FrameLayout
-                android:id="@+id/sum1"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/pin_present"
-                android:layout_gravity="center">
-                <FrameLayout
-                    android:id="@+id/sum1i"
-                    android:layout_width="5dp"
-                    android:layout_height="5dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/pin_present_in">
-
-                </FrameLayout>
-            </FrameLayout>
-            <FrameLayout
-                android:id="@+id/sum2"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/pin_present"
-                android:layout_gravity="center">
-                <FrameLayout
-                    android:id="@+id/sum2i"
-                    android:layout_width="5dp"
-                    android:layout_height="5dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/pin_present_in">
-
-                </FrameLayout>
-            </FrameLayout>
-            <FrameLayout
-                android:id="@+id/sum3"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/pin_present"
-                android:layout_gravity="center">
-                <FrameLayout
-                    android:id="@+id/sum3i"
-                    android:layout_width="5dp"
-                    android:layout_height="5dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/pin_present_in">
-
-                </FrameLayout>
-            </FrameLayout>
-            <FrameLayout
-                android:id="@+id/sum4"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/pin_present"
-                android:layout_gravity="center">
-                <FrameLayout
-                    android:id="@+id/sum4i"
-                    android:layout_width="5dp"
-                    android:layout_height="5dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/pin_present_in">
-
-                </FrameLayout>
-            </FrameLayout>
-        </LinearLayout>
-
-
-
-
-        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/numericPad"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
+            android:layout_marginBottom="0dp"
             android:gravity="center"
-            android:shrinkColumns="*"
-            android:stretchColumns="*">
+            android:orientation="vertical">
 
-            <TableRow
-                android:id="@+id/tableRow1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/repeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:inputType="number"
+                android:maxEms="4"/>
 
-                <Button
-                    android:id="@+id/button1"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_pin"
-                    android:gravity="center"
-                    android:padding="13dp"
-                    android:text="1"
-                    android:textColor="#ffffff"
-                    android:textSize="25sp"></Button>
+            <EditText
+                android:id="@+id/pinCodes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:inputType="number"
+                android:maxEms="4"/>
 
-                <Button
-                    android:id="@+id/button2"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_pin"
-                    android:gravity="center"
-                    android:padding="13dp"
-                    android:text="2"
-                    android:textColor="#ffffff"
-                    android:textSize="25sp"></Button>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:id="@+id/tvName"
+                android:textSize="20sp"
+                android:text="Установка PIN кода"
+                android:layout_marginBottom="20dp"/>
 
-                <Button
-                    android:id="@+id/button3"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_pin"
-                    android:gravity="center"
-                    android:padding="13dp"
-                    android:text="3"
-                    android:textColor="#ffffff"
-                    android:textSize="25sp"></Button>
-            </TableRow>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
 
-            <TableRow
-                android:id="@+id/tableRow2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                <FrameLayout
+                    android:id="@+id/sum1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/pin_present"
+                    android:layout_gravity="center">
+                    <FrameLayout
+                        android:id="@+id/sum1i"
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/pin_present_in">
 
-                <Button
-                    android:id="@+id/button4"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_pin"
-                    android:gravity="center"
-                    android:padding="13dp"
-                    android:text="4"
-                    android:textColor="#ffffff"
-                    android:textSize="25sp"></Button>
+                    </FrameLayout>
+                </FrameLayout>
+                <FrameLayout
+                    android:id="@+id/sum2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/pin_present"
+                    android:layout_gravity="center">
+                    <FrameLayout
+                        android:id="@+id/sum2i"
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/pin_present_in">
 
-                <Button
-                    android:id="@+id/button5"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_pin"
-                    android:gravity="center"
-                    android:padding="13dp"
-                    android:text="5"
-                    android:textColor="#ffffff"
-                    android:textSize="25sp"></Button>
+                    </FrameLayout>
+                </FrameLayout>
+                <FrameLayout
+                    android:id="@+id/sum3"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/pin_present"
+                    android:layout_gravity="center">
+                    <FrameLayout
+                        android:id="@+id/sum3i"
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/pin_present_in">
 
-                <Button
-                    android:id="@+id/button6"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_pin"
-                    android:gravity="center"
-                    android:padding="13dp"
-                    android:text="6"
-                    android:textColor="#ffffff"
-                    android:textSize="25sp"></Button>
-            </TableRow>
+                    </FrameLayout>
+                </FrameLayout>
+                <FrameLayout
+                    android:id="@+id/sum4"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/pin_present"
+                    android:layout_gravity="center">
+                    <FrameLayout
+                        android:id="@+id/sum4i"
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/pin_present_in">
 
-            <TableRow
-                android:id="@+id/tableRow3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/button7"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_pin"
-                    android:gravity="center"
-                    android:padding="13dp"
-                    android:text="7"
-                    android:textColor="#ffffff"
-                    android:textSize="25sp"></Button>
-
-                <Button
-                    android:id="@+id/button8"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_pin"
-                    android:gravity="center"
-                    android:padding="13dp"
-                    android:text="8"
-                    android:textColor="#ffffff"
-                    android:textSize="25sp"></Button>
-
-                <Button
-                    android:id="@+id/button9"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_pin"
-                    android:gravity="center"
-                    android:padding="13dp"
-                    android:text="9"
-                    android:textColor="#ffffff"
-                    android:textSize="25sp"></Button>
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/buttonOtpechatok"
-                    android:layout_width="0dip"
-                    android:layout_height="60dp"
-                    android:layout_margin="3dip"
-                    android:visibility="invisible"
-                    android:layout_weight="1"
-                    android:scaleType="fitCenter"
-                    android:background="@android:color/transparent"
-                    android:gravity="center"
-                    android:padding="13dp"
-                    android:textColor="#ffffff"
-                    android:textSize="25sp"></ImageButton>
-
-                <Button
-                    android:id="@+id/button0"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_pin"
-                    android:gravity="center"
-                    android:padding="13dp"
-                    android:text="0"
-                    android:textColor="#ffffff"
-                    android:textSize="25sp"></Button>
-
-                <ImageButton
-                    android:id="@+id/buttonDeleteBack"
-                    android:layout_width="0dip"
-                    android:layout_height="60dp"
-                    android:layout_margin="3dip"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_removesimbol"
-                    android:scaleType="fitCenter"
-                    android:background="@android:color/transparent"
-                    android:gravity="center"
-                    android:padding="13dp"
-                    android:textColor="#ffffff"
-                    android:textSize="25sp"></ImageButton>
-            </TableRow>
+                    </FrameLayout>
+                </FrameLayout>
+            </LinearLayout>
 
 
-        </TableLayout>
-    </LinearLayout>
+
+
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/numericPad"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:shrinkColumns="*"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/button1"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dip"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:padding="13dp"
+                        android:text="1"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="25sp"></Button>
+
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dip"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:padding="13dp"
+                        android:text="2"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="25sp"></Button>
+
+                    <Button
+                        android:id="@+id/button3"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dip"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:padding="13dp"
+                        android:text="3"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="25sp"></Button>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/button4"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dip"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:padding="13dp"
+                        android:text="4"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="25sp"></Button>
+
+                    <Button
+                        android:id="@+id/button5"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dip"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:padding="13dp"
+                        android:text="5"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="25sp"></Button>
+
+                    <Button
+                        android:id="@+id/button6"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dip"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:padding="13dp"
+                        android:text="6"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="25sp"></Button>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/button7"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dip"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:padding="13dp"
+                        android:text="7"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="25sp"></Button>
+
+                    <Button
+                        android:id="@+id/button8"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dip"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:padding="13dp"
+                        android:text="8"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="25sp"></Button>
+
+                    <Button
+                        android:id="@+id/button9"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dip"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:padding="13dp"
+                        android:text="9"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="25sp"></Button>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:id="@+id/buttonOtpechatok"
+                        android:layout_width="0dip"
+                        android:layout_height="60dp"
+                        android:layout_margin="3dip"
+                        android:visibility="invisible"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="13dp"
+                        android:textColor="#ffffff"
+                        android:textSize="25sp"></ImageButton>
+
+                    <Button
+                        android:id="@+id/button0"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dip"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:padding="13dp"
+                        android:text="0"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="25sp"></Button>
+
+                    <ImageButton
+                        android:id="@+id/buttonDeleteBack"
+                        android:layout_width="0dip"
+                        android:layout_height="60dp"
+                        android:layout_margin="3dip"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_removesimbol"
+                        android:scaleType="fitCenter"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:padding="13dp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="25sp"></ImageButton>
+                </TableRow>
+
+
+            </TableLayout>
+        </LinearLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 

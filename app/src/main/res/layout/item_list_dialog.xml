@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_marginRight="5dp"
+        android:id="@+id/llIn"
+        android:padding="8dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="8dp"
+            android:orientation="vertical"
+            android:background="@drawable/background_message_oute"
+            >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:paddingLeft="13dp"
+            android:paddingRight="8dp"
+            android:id="@+id/tvMsgIn"
+            android:textSize="15sp"
+            android:textAllCaps="false"
+            android:typeface="sans"
+            android:text="dasdsadas"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:paddingLeft="12dp"
+                android:textSize="12sp"
+                android:id="@+id/tvDateIn"
+                android:textAllCaps="false"
+                android:textStyle="italic"
+                android:typeface="sans"
+                android:layout_gravity="right"
+                android:gravity="right"
+                android:textAlignment="textEnd"
+                android:layout_alignBottom="@+id/tvMsgIn"
+                android:layout_toRightOf="@+id/tvMsgIn"
+                android:text="20.20.2020"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/llOut"
+        android:layout_weight="1"
+        android:layout_gravity="right"
+        android:padding="8dp"
+        android:gravity="right"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="8dp"
+            android:orientation="vertical"
+            android:background="@drawable/background_message_in"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:paddingLeft="13dp"
+                android:paddingRight="8dp"
+                android:id="@+id/tvMsgOut"
+                android:textSize="15sp"
+                android:textAllCaps="false"
+                android:typeface="sans"
+                android:text="dasdsadas"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:paddingLeft="12dp"
+                android:textSize="12sp"
+                android:id="@+id/tvDateOut"
+                android:textAllCaps="false"
+                android:textStyle="italic"
+                android:typeface="sans"
+                android:layout_gravity="right"
+                android:gravity="right"
+                android:paddingRight="8dp"
+                android:textAlignment="textEnd"
+                android:layout_alignBottom="@+id/tvMsgIn"
+                android:layout_toRightOf="@+id/tvMsgIn"
+                android:text="20.20.2020"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

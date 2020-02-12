@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +48,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import tyrantgit.explosionfield.ExplosionField;
 
+import static com.indigo24.fragments.profileEditFR.openEdit;
 import static com.indigo24.requests.Interface.baseAVATAR;
 import static com.indigo24.requests.Interface.baseIMG;
 
@@ -56,14 +59,15 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     TextView tvName;
     @BindView(R.id.tvPhone)
     TextView tvPhone;
-
+    @BindView(R.id.swipe)
+    SwipeRefreshLayout swipe;
     @BindViews({R.id.btnExit, R.id.btnEdit,R.id.btnMenu, R.id.btnWallet})
     View[] viewBtns;
 
     @BindView(R.id.contentFragment)
     FrameLayout contentFragment;
-    @BindView(R.id.rel1)
-    RelativeLayout relProfile;
+    @BindView(R.id.ll)
+    LinearLayout ll;
     String userID, unique, avatar, mail, name, phone, city;
     SharedPreferences sPref;
     ExplosionField explosionField;
@@ -73,12 +77,15 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
         explosionField = ExplosionField.attach2Window(this);
-        relProfile.setVisibility(View.VISIBLE);
+        ll.setVisibility(View.VISIBLE);
         contentFragment.setVisibility(View.GONE);
+        openEdit= 0;
         getProfileData();
+
     }
 
     private void getProfileData() {
+        swipe.setRefreshing(true);
         SharedPreferences sPref = getSharedPreferences("UserData",MODE_PRIVATE);
         userID  = sPref.getString("id","");
         unique  = sPref.getString("unique","");
@@ -93,7 +100,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             public void onResponse(retrofit2.Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response.body().string());
-                    if(jsonObject.getBoolean("success")){
+                    if(jsonObject.has("success") && jsonObject.getBoolean("success")){
                         avatar = jsonObject.getString("avatar");
                         mail = jsonObject.getString("email");
                         name = jsonObject.getString("name");
@@ -107,17 +114,21 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                                 tvPhone.setText(phone);
                             }
                         });
+                        swipe.setRefreshing(false);
                     }
                     else {
                         if(jsonObject.has("message"))
                             Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        swipe.setRefreshing(false);
                     }
                 } catch (JSONException | NullPointerException | IOException e) {
                     e.printStackTrace();
+                    swipe.setRefreshing(false);
                 }
             }
             @Override
             public void onFailure(retrofit2.Call<ResponseBody> call, Throwable t) {
+                swipe.setRefreshing(false);
                 Toast.makeText(getApplicationContext(), "Ошибка! или Проверьте доступ к Интернету", Toast.LENGTH_SHORT).show();
                 t.printStackTrace();
             }
@@ -125,15 +136,18 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     }
 
 
+
+
     @OnClick({R.id.btnEdit, R.id.btnExit,R.id.btnWallet, R.id.btnMenu})
     void onSaveClick(View view) {
         switch (view.getId()) {
             case R.id.btnEdit:
-                relProfile.setVisibility(View.GONE);
+                ll.setVisibility(View.GONE);
                 contentFragment.setVisibility(View.VISIBLE);
                 Bundle b = new Bundle();
                 b.putString("name",name);
                 b.putString("city",city);
+                b.putString("url",baseAVATAR+avatar);
                 Fragment fragment = new profileEditFR();
                 fragment.setArguments(b);
                 FragmentManager fm = getSupportFragmentManager();
@@ -196,7 +210,15 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
+        if(openEdit!=1) {
         startActivity(new Intent(Profile.this, MainActivity.class));
         finish();
+        }
+        else {
+            ll.setVisibility(View.VISIBLE);
+            contentFragment.setVisibility(View.GONE);
+            getSupportFragmentManager().popBackStack();
+            getProfileData();
+        }
     }
 }

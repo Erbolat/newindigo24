@@ -3,8 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.indigo24">
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera2.full" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:name="android.hardware.camera.any"
+        android:required="true" />
+
+
+
     <application
         android:allowBackup="true"
+        android:name=".MainApp"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -17,11 +32,11 @@
         <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".activities.Auth" />
+        <activity android:name=".activities.Auth2" />
         <activity android:name=".activities.Registr" />
         <activity android:name=".activities.Wallet" />
         <activity android:name=".activities.Community" />
@@ -29,7 +44,11 @@
         <activity android:name=".activities.News" />
         <activity android:name=".activities.TV" />
         <activity android:name=".activities.Shops" />
+        <activity android:name=".activities.Chat" />
         <activity android:name=".activities.Services" />
+
+
+
     </application>
 
 </manifest>

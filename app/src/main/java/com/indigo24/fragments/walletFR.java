@@ -53,7 +53,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class walletFR extends Fragment {
 
-    @BindViews({R.id.btnPayCateg})
+    @BindViews({R.id.btnPayobj, R.id.btnSendFriend,R.id.btnPay})
     View[] viewBtns;
 
     @Override
@@ -65,18 +65,40 @@ public class walletFR extends Fragment {
         return  v;
     }
 
-    @OnClick({R.id.btnPayCateg})
+    @OnClick({R.id.btnPayobj ,R.id.btnSendFriend, R.id.btnPay, R.id.btnHistorySend,
+            R.id.btnHistoryTrans, R.id.btnExchange})
     void onSaveClick(View view) {
         switch (view.getId()) {
-            case R.id.btnPayCateg: {
-            Fragment fragment = new allPaysFR();
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                FragmentTransaction transaction = fm.beginTransaction();
-                transaction.replace(R.id.contentFragment, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+            case R.id.btnPayobj:
+            case R.id.btnPay: {
+                openFragment(new allPaysFR());
+                break;
+            }
+            case R.id.btnSendFriend: {
+                openFragment(new sendFriendFR());
+                break;
+            }
+            case R.id.btnHistorySend: {
+                openFragment(new historySendFR());
+                break;
+            }
+            case R.id.btnHistoryTrans: {
+                openFragment(new historyTransFR());
+                break;
+            }
+            case R.id.btnExchange: {
+                openFragment(new exchangeFR());
                 break;
             }
         }
+    }
+
+
+    void openFragment(Fragment fr){
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.contentFragment, fr);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

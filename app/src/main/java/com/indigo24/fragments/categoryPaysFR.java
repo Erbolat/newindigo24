@@ -23,8 +23,9 @@ import com.indigo24.R;
 import com.indigo24.activities.Auth;
 import com.indigo24.activities.MainActivity;
 import com.indigo24.activities.Wallet;
+
 import com.indigo24.adapters.AdapterCateg;
-import com.indigo24.objects.categories;
+import com.indigo24.objects.object;
 import com.indigo24.requests.Interface;
 
 import org.json.JSONArray;
@@ -40,11 +41,11 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class categoryPaysFR extends Fragment {
-    ListView listCateg;
+    ListView listobj;
     SwipeRefreshLayout swipe;
     SharedPreferences sPref;
     String unique,userID;
-    ArrayList<categories> arrCateg = new ArrayList<>();
+    ArrayList<object> arrobj = new ArrayList<>();
     AdapterCateg adapter;
     Toolbar toolbar;
     @Override
@@ -52,7 +53,7 @@ public class categoryPaysFR extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_category, container, false);
         Wallet.shag=1;
-        arrCateg = new ArrayList<>();
+        arrobj = new ArrayList<>();
         toolbar = (Toolbar) v.findViewById(R.id.toolbar);
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
@@ -66,28 +67,28 @@ public class categoryPaysFR extends Fragment {
         });
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        listCateg = v.findViewById(R.id.listCateg);
+        listobj = v.findViewById(R.id.listobj);
         swipe = v.findViewById(R.id.swipe);
         sPref = getActivity().getSharedPreferences("UserData",getActivity().MODE_PRIVATE);
         userID  = sPref.getString("id","");
         unique  = sPref.getString("unique","");
         getCategory();
 
-        adapter = new AdapterCateg(getContext(),arrCateg,"categ");
-        listCateg.setAdapter(adapter);
+        adapter = new AdapterCateg(getContext(),arrobj,"obj");
+        listobj.setAdapter(adapter);
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 swipe.setRefreshing(false);
             }
         });
-        listCateg.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listobj.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if(!arrCateg.get(position).getCount().equals("0")) {
+                if(!arrobj.get(position).getCount().equals("0")) {
                 Bundle bundle=new Bundle();
-                bundle.putString("categID", arrCateg.get(position).getId()+"");
+                bundle.putString("objID", arrobj.get(position).getId()+"");
                 Fragment fragment = new servicesPaysFR();
                 fragment.setArguments(bundle);
                 FragmentManager fm = getActivity().getSupportFragmentManager();
@@ -110,28 +111,28 @@ public class categoryPaysFR extends Fragment {
         Retrofit.Builder builder=new Retrofit.Builder().addCallAdapterFactory(RxJava2CallAdapterFactory.create()).baseUrl(Interface.baseURL).addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit= builder.build();
         Interface intc = retrofit.create(Interface.class);
-        retrofit2.Call<ResponseBody> call = intc.getCateg(unique,userID);
+        retrofit2.Call<ResponseBody> call = intc.getobj(unique,userID);
         call.enqueue(new retrofit2.Callback<ResponseBody>() {
             @Override
             public void onResponse(retrofit2.Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response.body().string());
                     if(jsonObject.getBoolean("success")){
-                        JSONArray jsCateg = jsonObject.getJSONArray("categories");
-                        Log.e("BEKA1",jsCateg.toString()+"");
-                        if(jsCateg.length()>0){
-                            for(int i=0; i<jsCateg.length(); i++)
+                        JSONArray jsobj = jsonObject.getJSONArray("categories");
+                        Log.e("BEKA1",jsobj.toString()+"");
+                        if(jsobj.length()>0){
+                            for(int i=0; i<jsobj.length(); i++)
                             {
-                                Log.e("BEKA1",jsCateg.getJSONObject(i).getInt("count")+"");
-                                categories categ = new categories();
-                                categ.setId(jsCateg.getJSONObject(i).getString("ID"));
-                                categ.setLogo(jsCateg.getJSONObject(i).getString("logo"));
-                                categ.setCount(jsCateg.getJSONObject(i).getInt("count")+"");
-                                categ.setTitle(jsCateg.getJSONObject(i).getString("title"));
-                                arrCateg.add(categ);
+                                Log.e("BEKA1",jsobj.getJSONObject(i).getInt("count")+"");
+                                object obj = new object();
+                                obj.setId(jsobj.getJSONObject(i).getString("ID"));
+                                obj.setLogo(jsobj.getJSONObject(i).getString("logo"));
+                                obj.setCount(jsobj.getJSONObject(i).getInt("count")+"");
+                                obj.setTitle(jsobj.getJSONObject(i).getString("title"));
+                                arrobj.add(obj);
                             }
-                            adapter = new AdapterCateg(getContext(),arrCateg, "categ");
-                            listCateg.setAdapter(adapter);
+                            adapter = new AdapterCateg(getContext(),arrobj, "obj");
+                            listobj.setAdapter(adapter);
                             swipe.setRefreshing(false);
                         }
                         swipe.setRefreshing(false);

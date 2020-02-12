@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 import com.indigo24.R;
-import com.indigo24.objects.categories;
+import com.indigo24.objects.object;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,15 +22,15 @@ import static com.indigo24.requests.Interface.baseIMG;
 public class AdapterCateg extends BaseAdapter {
     Context ctx;
     LayoutInflater lInflater;
-    ArrayList<categories> objects;
+    ArrayList<object> objects;
     ImageView img;
     TextView tvTitle, tvCount;
     String type;
     Map<String, String> map = new HashMap<String, String>();
 
-    public AdapterCateg(Context context, ArrayList<categories> categ, String type) {
+    public AdapterCateg(Context context, ArrayList<object> obj, String type) {
         ctx = context;
-        objects = categ;
+        objects = obj;
         this.type = type;
         lInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -63,12 +65,21 @@ public class AdapterCateg extends BaseAdapter {
         img = view.findViewById(R.id.img);
 
         tvTitle.setText(objects.get(position).getTitle());
-        if(type.equals("categ")) {
+        if(type.equals("obj")) {
             tvCount.setVisibility(View.VISIBLE);
             tvCount.setText(objects.get(position).getCount());
         }
         else tvCount.setVisibility(View.GONE);
-        Picasso.get().load(baseIMG+objects.get(position).getLogo()).into(img);
+
+        Glide.with(ctx)
+                .load(baseIMG+objects.get(position).getLogo())
+                .centerCrop()
+                .into(img);
+// .crossFade()
+        //                .placeholder(R.drawable.loading_spinner)
+
+//        Picasso.get().load(baseIMG+objects.get(position).getLogo()).into(img);
+
         return view;
     }
 

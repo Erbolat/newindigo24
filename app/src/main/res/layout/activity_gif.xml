@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent"
+
+    android:background="@color/colorPrimary"
     tools:context=".activities.GifActivity">
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/sun" />
+        android:scaleType="fitCenter"
+        android:src="@drawable/erte" />
 </androidx.constraintlayout.widget.ConstraintLayout>

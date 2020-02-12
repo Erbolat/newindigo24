@@ -1,28 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/colorPrimary"
-    android:layout_gravity="center"
-    android:gravity="center"
+
     android:padding="20dp"
     android:layout_height="match_parent">
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:id="@+id/swipe"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="160dp"
-        android:layout_height="100dp"
-        android:src="@drawable/logo_indigo"/>
+        android:id="@+id/img"
+        android:layout_width="180dp"
+        android:layout_height="150dp"
+        android:scaleType="centerInside"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/logo_indigo" />
 
     <EditText
         android:layout_width="200dp"
         android:background="@drawable/white_back"
         android:paddingHorizontal="10dp"
         android:paddingTop="5dp"
-        android:id="@+id/editName"
+        android:id="@+id/editUsername"
         android:paddingBottom="5dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         tools:ignore="UnusedAttribute" />
 
     <EditText
@@ -46,4 +60,6 @@
         android:id="@+id/btnSave"
         android:layout_height="wrap_content"
         tools:ignore="UnusedAttribute" />
+    </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

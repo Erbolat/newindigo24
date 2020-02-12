@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -20,7 +21,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.indigo24.R;
 import com.indigo24.activities.Wallet;
 import com.indigo24.adapters.AdapterCateg;
-import com.indigo24.objects.categories;
+import com.indigo24.objects.object;
 import com.indigo24.requests.Interface;
 
 import org.json.JSONArray;
@@ -39,8 +40,8 @@ public class servicesPaysFR extends Fragment {
     ListView listServices;
     SwipeRefreshLayout swipe;
     SharedPreferences sPref;
-    String unique,userID,categID;
-    ArrayList<categories> arrServices = new ArrayList<>();
+    String unique,userID,objID;
+    ArrayList<object> arrServices = new ArrayList<>();
     AdapterCateg adapter;
     Toolbar toolbar;
     @Override
@@ -56,9 +57,9 @@ public class servicesPaysFR extends Fragment {
         unique  = sPref.getString("unique","");
         Bundle bundle = this.getArguments();
         if(bundle != null){
-            categID = bundle.getString("categID");
+            objID = bundle.getString("objID");
+            Log.e("NEN1", objID+"");
             getServices();
-            Log.e("categID",categID);
         }
 
         toolbar = (Toolbar) v.findViewById(R.id.toolbar);
@@ -88,7 +89,6 @@ public class servicesPaysFR extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle=new Bundle();
-                Log.e("SERvice_id",   (position+1)+"");
                 bundle.putString("serviceID", arrServices.get(position).getId()+"");
                 bundle.putString("urlPhoto", arrServices.get(position).getLogo()+"");
                 Fragment fragment = new itemPaysFR();
@@ -109,24 +109,26 @@ public class servicesPaysFR extends Fragment {
         Retrofit.Builder builder=new Retrofit.Builder().addCallAdapterFactory(RxJava2CallAdapterFactory.create()).baseUrl(Interface.baseURL).addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit= builder.build();
         Interface intc = retrofit.create(Interface.class);
-        retrofit2.Call<ResponseBody> call = intc.getServices(unique,userID,categID);
+        retrofit2.Call<ResponseBody> call = intc.getServices(unique,userID,objID);
+        Log.e("NEN1", unique+ "  "+userID+" "+objID);
         call.enqueue(new retrofit2.Callback<ResponseBody>() {
             @Override
             public void onResponse(retrofit2.Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response.body().string());
+                    Log.e("NEN", jsonObject.toString());
                     if(jsonObject.getBoolean("success")){
-                        JSONArray jsCateg = jsonObject.getJSONArray("services");
-                        if(jsCateg.length()>0){
+                        JSONArray jsobj = jsonObject.getJSONArray("services");
+                        if(jsobj.length()>0){
 
-                            for(int i=0; i<jsCateg.length(); i++)
+                            for(int i=0; i<jsobj.length(); i++)
                             {
-                                categories categ = new categories();
-                                categ.setId(jsCateg.getJSONObject(i).getString("id"));
-                                categ.setLogo(jsCateg.getJSONObject(i).getString("logo"));
-                                categ.setTitle(jsCateg.getJSONObject(i).getString("title"));
-                                categ.setComission(jsCateg.getJSONObject(i).getString("commission"));
-                                arrServices.add(categ);
+                                object obj = new object();
+                                obj.setId(jsobj.getJSONObject(i).getString("id"));
+                                obj.setLogo(jsobj.getJSONObject(i).getString("logo"));
+                                obj.setTitle(jsobj.getJSONObject(i).getString("title"));
+                                obj.setComission(jsobj.getJSONObject(i).getString("commission"));
+                                arrServices.add(obj);
                             }
                             adapter = new AdapterCateg(getContext(),arrServices, "services");
                             listServices.setAdapter(adapter);

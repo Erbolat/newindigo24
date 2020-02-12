@@ -8,13 +8,19 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.indigo24.MainApp;
 import com.indigo24.R;
+import com.indigo24.room.AppDatabase;
+import com.indigo24.room.intDialog;
+import com.indigo24.room.objDialog;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -64,6 +70,38 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         imgServices.setOnClickListener(this);
         images = new ImageView[]{findViewById(R.id.icon1), findViewById(R.id.icon2), findViewById(R.id.icon3), findViewById(R.id.icon4), findViewById(R.id.icon5), findViewById(R.id.icon6)};
         tvs = new TextView[]{findViewById(R.id.tv1), findViewById(R.id.tv2), findViewById(R.id.tv3), findViewById(R.id.tv4), findViewById(R.id.tv5), findViewById(R.id.tv6)};
+
+
+        AppDatabase db = MainApp.getInstance().getDatabase();
+        intDialog mIntDialog = db.mIntDialog();
+
+
+
+        if(mIntDialog.getAllDialogs().size()==0) {
+
+            String dates[] = new String[]{"16:38:12", "16:37:12", "16:38:42", "16:40:02", "16:20:25"};
+            int toID[] = new int[]{2, 1, 3, 1, 1};
+            int fromID[] = new int[]{1, 2, 1, 3, 3};
+            String msg[] = new String[]{"message3", "message2", "message4", "message5", "message1"};
+            int msgIDs[] = new int[]{3, 2, 4, 5, 1};
+            int status[] = new int[]{1, 1, 1, 1, 1};
+
+
+            for (int i = 0; i < dates.length; i++) {
+                objDialog objDlg = new objDialog(toID[i], fromID[i], msgIDs[i], msg[i], dates[i], status[i]);
+                mIntDialog.insert(objDlg);
+            }
+
+        }
+
+        List<objDialog> dialogs = mIntDialog.loadAllById(2);
+        if(dialogs.size()>0) {
+            for(int i=0; i<dialogs.size();i++)
+            {
+                Log.e("ER1", dialogs.get(i).getMessage());
+            }
+        }
+
     }
 
     @Override
@@ -143,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
                     }
 
                     public void onFinish() {
-                        startActivity(new Intent(MainActivity.this, Shops.class));
+                        startActivity(new Intent(MainActivity.this, Chat.class));
                         finish();
                     }
                 };

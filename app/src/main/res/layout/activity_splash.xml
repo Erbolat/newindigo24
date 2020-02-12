@@ -11,11 +11,11 @@
     >
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="400dp"
         android:layout_height="250dp"
         android:src="@drawable/logo_indigo"
         android:layout_gravity="center"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
         tools:ignore="MissingConstraints" />
 
 

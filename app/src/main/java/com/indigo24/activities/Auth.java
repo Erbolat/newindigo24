@@ -47,27 +47,20 @@ public class Auth extends AppCompatActivity implements View.OnClickListener {
     SwipeRefreshLayout swipeAuth;
     @BindView(R.id.linRegistr)
     LinearLayout linRegistr;
-
     String phone, password;
     String unique="";
     SharedPreferences sPref;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
         ButterKnife.bind(this);
-
-
-
-
         getPhoneNumber();
         btnAuth.setOnClickListener(this);
         btnForgetPass.setOnClickListener(this);
         swipeAuth.setOnClickListener(this);
         linRegistr.setOnClickListener(this);
-
     }
 
     private void getPhoneNumber() {
@@ -107,8 +100,6 @@ public class Auth extends AppCompatActivity implements View.OnClickListener {
         Retrofit retrofit= builder.build();
         Interface intc = retrofit.create(Interface.class);
         retrofit2.Call<ResponseBody> call = intc.auth(phone,password);
-
-
         call.enqueue(new retrofit2.Callback<ResponseBody>() {
             @Override
             public void onResponse(retrofit2.Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {

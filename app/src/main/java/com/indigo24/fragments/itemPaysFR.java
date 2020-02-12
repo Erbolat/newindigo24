@@ -2,7 +2,6 @@ package com.indigo24.fragments;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -14,25 +13,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.indigo24.R;
-import com.indigo24.activities.MainActivity;
-import com.indigo24.activities.Profile;
 import com.indigo24.activities.Wallet;
-import com.indigo24.adapters.AdapterCateg;
-import com.indigo24.objects.categories;
+import com.indigo24.objects.object;
 import com.indigo24.requests.Interface;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -50,19 +42,15 @@ import tyrantgit.explosionfield.ExplosionField;
 import static com.indigo24.requests.Interface.baseIMG;
 
 public class itemPaysFR extends Fragment {
+
     SwipeRefreshLayout swipe;
     SharedPreferences sPref;
     String unique,userID,serviceID;
-    ArrayList<categories> arrServices = new ArrayList<>();
-    AdapterCateg adapter;
-    Toolbar toolbar;
-
-
-
+    ArrayList<object> arrServices = new ArrayList<>();
 
     @BindView(R.id.btnMenu)
     ImageView btnMenu;
-    @BindView(R.id.editLogin)
+    @BindView(R.id.editPhone)
     EditText editLogin;
     @BindView(R.id.editSumm)
     EditText editSumm;
@@ -83,7 +71,7 @@ public class itemPaysFR extends Fragment {
         explosionField = ExplosionField.attach2Window(getActivity());
         arrServices = new ArrayList<>();
         Wallet.shag=3;
-        btnPay = v.findViewById(R.id.btnPay);
+        btnPay = v.findViewById(R.id.btnPayobj);
         tvPlaceholder = v.findViewById(R.id.tvPlaceholder);
         img = v.findViewById(R.id.img);
         swipe = v.findViewById(R.id.swipe);

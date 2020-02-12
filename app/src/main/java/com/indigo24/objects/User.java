@@ -1,26 +1,40 @@
 package com.indigo24.objects;
 
 public class User {
-    String login, password;
+    String name, id, avatar;
 
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
+    public User( String id, String name, String avatar) {
+        this.name = name;
+        this.id = id;
+        this.avatar = avatar;
     }
 
-    public String getLogin() {
-        return login;
+    public User() {
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public String getName() {
+        return name;
     }
 
-    public String getPassword() {
-        return password;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getId() {
+        return id;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+
 }

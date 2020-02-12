@@ -288,7 +288,7 @@ public class pinCodeFR extends Fragment {
                         Log.e("Auth_PIN",jsonObject.toString());
                         if(jsonObject.getBoolean("success")){
                                 if(hasPin)
-                                    Toast.makeText(getContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                                    Log.e("FF","");
                                 else {
                                     sPref = getContext().getSharedPreferences("UserData", Context.MODE_PRIVATE);
                                     SharedPreferences.Editor editor = sPref.edit();
