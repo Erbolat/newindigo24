@@ -28,6 +28,8 @@ import androidx.appcompat.widget.AppCompatEditText;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.indigo24.ClientWebSocket;
+import com.indigo24.MainApp;
 import com.indigo24.R;
 import com.indigo24.objects.objCountry;
 import com.indigo24.requests.Interface;
@@ -74,7 +76,7 @@ public class Auth2 extends AppCompatActivity  {
     @BindView(R.id.linRegistr)
     LinearLayout linRegistr;
     String phone, password;
-    String unique="";
+    String unique="",userID="";
     SharedPreferences sPref;
     int replacer = 0;
 
@@ -85,8 +87,15 @@ public class Auth2 extends AppCompatActivity  {
         setContentView(R.layout.activity_auth2);
         ButterKnife.bind(this);
         sPref = getSharedPreferences("UserData",Context.MODE_PRIVATE);
+        userID  = sPref.getString("id","");
+        unique  = sPref.getString("unique","");
+//        Log.e("ER111", userID);
+//        Log.e("ER222", unique);
         menuCountry();
         getPhoneNumber();
+
+
+
 
         editPhone.addTextChangedListener(new TextWatcher() {
             @Override

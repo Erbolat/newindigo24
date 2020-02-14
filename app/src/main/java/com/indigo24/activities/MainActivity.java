@@ -14,8 +14,10 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.indigo24.ClientWebSocket;
 import com.indigo24.MainApp;
 import com.indigo24.R;
+import com.indigo24.fragments.dialogUser;
 import com.indigo24.room.AppDatabase;
 import com.indigo24.room.intDialog;
 import com.indigo24.room.objDialog;
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         explosionField = ExplosionField.attach2Window(this);
-
+        dialogUser.dialog = 0;
         ButterKnife.bind(this);
         imgWallet.setOnClickListener(this);
         imgProfile.setOnClickListener(this);
@@ -75,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         AppDatabase db = MainApp.getInstance().getDatabase();
         intDialog mIntDialog = db.mIntDialog();
 
+
+//        clientWebSocket.connect();
 
 
         if(mIntDialog.getAllDialogs().size()==0) {

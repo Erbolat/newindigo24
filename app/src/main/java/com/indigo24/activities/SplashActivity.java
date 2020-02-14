@@ -20,7 +20,7 @@ import com.indigo24.R;
 
 public class SplashActivity extends AppCompatActivity {
     SharedPreferences sPref;
-    String phone = "", unique="", id="";
+ public  static    String phone = "", unique="", id="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

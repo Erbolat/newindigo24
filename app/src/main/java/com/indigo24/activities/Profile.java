@@ -102,6 +102,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                     JSONObject jsonObject = new JSONObject(response.body().string());
                     if(jsonObject.has("success") && jsonObject.getBoolean("success")){
                         avatar = jsonObject.getString("avatar");
+                        Log.e("AVA11",avatar);
                         mail = jsonObject.getString("email");
                         name = jsonObject.getString("name");
                         if (jsonObject.has("city"))

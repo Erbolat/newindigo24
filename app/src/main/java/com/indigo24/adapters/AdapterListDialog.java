@@ -13,12 +13,16 @@ import android.widget.TextView;
 
 import com.indigo24.R;
 import com.indigo24.objects.object;
+import com.indigo24.requests.Interface;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
 
 public class AdapterListDialog extends BaseAdapter {
@@ -28,11 +32,13 @@ public class AdapterListDialog extends BaseAdapter {
     LinearLayout llIn, llOut;
     ImageView img;
     TextView tvMsgOut, tvMsgIn, tvDateIn, tvDateOut;
+    ImageView imgAvaIn, imgAvaOut;
     String type;
-    String myUserID="30220";
+    String myUserID;
     Map<String, String> map = new HashMap<String, String>();
 
-    public AdapterListDialog(Context context, ArrayList<object> obj) {
+    public AdapterListDialog(Context context, ArrayList<object> obj, String myID) {
+        myUserID = myID;
         ctx = context;
         objects = obj;
         lInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -70,11 +76,17 @@ public class AdapterListDialog extends BaseAdapter {
         tvMsgIn = view.findViewById(R.id.tvMsgIn);
         tvDateIn = view.findViewById(R.id.tvDateIn);
         tvDateOut = view.findViewById(R.id.tvDateOut);
+        imgAvaIn = view.findViewById(R.id.imgAvaIn);
+        imgAvaOut = view.findViewById(R.id.imgAvaOut);
 
         if(!objects.get(position).getUserID().equals(myUserID)) {
+
+//            Log.e("BBBB1",objects.get(position).getAvatar()+"!!!");
+
             llIn.setVisibility(View.VISIBLE);
-            llOut.setVisibility(View.INVISIBLE);
-            tvMsgIn.setText(objects.get(position).getMsg());
+            llOut.setVisibility(View.GONE);
+            tvMsgIn.setText("AibekQ \n"+objects.get(position).getMsg());
+            Picasso.get().load(Interface.baseAVATAR+"07ae399b300360500bc8.jpg").transform(new CropCircleTransformation()).into(imgAvaIn);
             @SuppressLint("SimpleDateFormat")
             SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm ");
             Date updatedate = new Date(Integer.parseInt(objects.get(position).getData()) * 1000L);
@@ -82,9 +94,12 @@ public class AdapterListDialog extends BaseAdapter {
 
         }
         else {
-            llIn.setVisibility(View.INVISIBLE);
+//            Log.e("BBBB12",objects.get(position).getAvatar()+"!!!");
+
+            llIn.setVisibility(View.GONE);
             llOut.setVisibility(View.VISIBLE);
-            tvMsgOut.setText(objects.get(position).getMsg());
+            tvMsgOut.setText("Я \n"+objects.get(position).getMsg());
+            Picasso.get().load(Interface.baseAVATAR+"5.jpeg").transform(new CropCircleTransformation()).into(imgAvaOut);
             @SuppressLint("SimpleDateFormat")
             SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm ");
             Date updatedate = new Date(Integer.parseInt(objects.get(position).getData()) * 1000L);

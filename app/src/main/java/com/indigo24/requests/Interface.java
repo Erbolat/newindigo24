@@ -19,9 +19,9 @@ import retrofit2.http.PartMap;
 
 public interface Interface {
 
-    public  static  String baseURL = "https://api.indigo24.site/api/v2.1/";
-    public  static  String baseIMG = "https://api.indigo24.site/logos/";
-    public  static  String baseAVATAR = "https://indigo24.site/uploads/avatars/";
+    public  static  String baseURL = "https://api.indigo24.xyz/api/v2.1/";
+    public  static  String baseIMG = "https://api.indigo24.xyz/logos/";
+    public  static  String baseAVATAR = "https://indigo24.com/uploads/avatars/";
     public  static  String baseAVATARold = "https://indigo24.com/uploads/avatars/";
     public static String tokenREG = "BGkA2as4#h_J@5txId3fEq6e!F80UMj197ZC";
     public static String tokenSMS = "2MSldk_7!FUh3zB18XoEfIe#nY69@0tcP5Q4";

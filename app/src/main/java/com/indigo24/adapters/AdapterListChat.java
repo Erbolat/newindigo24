@@ -25,6 +25,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
+
 import static com.indigo24.requests.Interface.baseIMG;
 
 
@@ -73,13 +75,14 @@ public class AdapterListChat extends BaseAdapter {
         tvDate = view.findViewById(R.id.tvDate);
         tvLastMsg = view.findViewById(R.id.tvLastMsg);
         img = view.findViewById(R.id.img);
-//        Log.e("AVA",objects.get(position).getAvatar()+ "!"+objects.get(position).getTitle());
-//        if(!objects.get(position).getAvatar().isEmpty() && objects.get(position).getAvatar().length()>3)
+        Log.e("AVA",objects.get(position).getAvatar()+ "!"+objects.get(position).getTitle());
+        if(!objects.get(position).getAvatar().isEmpty() && objects.get(position).getAvatar().length()>3)
+            Picasso.get().load(Interface.baseAVATAR+objects.get(position).getAvatar()).transform(new CropCircleTransformation()).into(img);
 //            Glide.with(ctx).load(Interface.baseAVATAR+objects.get(position).getAvatar()).centerCrop().into(img);
-//        else {
-//            Drawable drawable = AppCompatResources.getDrawable(ctx, R.drawable.ic_person);
-//            img.setImageDrawable(drawable);
-//        }
+        else {
+            Drawable drawable = AppCompatResources.getDrawable(ctx, R.drawable.ic_person);
+            img.setImageDrawable(drawable);
+        }
         tvName.setText(objects.get(position).getName());
 
         @SuppressLint("SimpleDateFormat")

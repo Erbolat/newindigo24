@@ -11,6 +11,8 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.AuthFailureError;
@@ -56,7 +59,9 @@ import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.squareup.picasso.Picasso;
 import com.vanniktech.emoji.EmojiEditText;
+import com.vanniktech.emoji.EmojiPopup;
 
+import org.java_websocket.WebSocket;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 import org.json.JSONArray;
@@ -74,6 +79,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
@@ -101,7 +107,7 @@ public class dialogUser extends Fragment {
     String userAVA, userNAME, userPHONE;
     AdapterListDialog adapter;
     @BindView(R.id.messageInput)
-    public    EmojiEditText editMessage;
+    public EmojiEditText editMessage;
     @BindView(R.id.swipe)
     SwipeRefreshLayout swipe;
     @BindView(R.id.gifDwn)
@@ -114,39 +120,65 @@ public class dialogUser extends Fragment {
     RecordButton btnRecord;
     @BindView(R.id.btnSend)
     ImageButton btnSend;
+    @BindView(R.id.btnSmile)
+    ImageButton btnSmile;
+    @BindView(R.id.gifTyping)
+    GifImageView gifTyping;
     @BindView(R.id.list)
     ListView list;
     WebSocketClient mWebSocketClient;
     boolean get= false;
     boolean teg= false;
+    boolean onTick= false;
     String type = "";
     String cabinetID = "";
+    String messageEdit = "";
+    ViewGroup rootView;
+    EmojiPopup emojiPopup;
+    static boolean isWrite = false;
+    public static int dialog = 1;
+    @BindView(R.id.imgBack)
+    ImageView imgBack;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_dialog_user, container, false);
+        rootView = v.findViewById(R.id.activityRoot);
         ButterKnife.bind(this, v);
-        userID = 30220;
+        newPage=0;
+        emojiPopup = EmojiPopup.Builder.fromRootView(rootView).build(editMessage);
+        SharedPreferences sPref = getActivity().getSharedPreferences("UserData",getActivity().MODE_PRIVATE);
+        dialog = 1;
+        userID  = Integer.parseInt(sPref.getString("id",""));
+        unique  = sPref.getString("unique","");
         Bundle args = getArguments();
         sendInit = new JSONObject();
         if (args != null) {
             type = args.getString("type");
             cabinetID = args.getString("cabinetID");
-            Log.e("ERA1+2", cabinetID+ " "+type);
+            if(type.equals("2"))  {
+                userNAME = args.getString("groupName");
+            tvName.setText(userNAME);
+                Picasso.get().load(Interface.baseAVATAR+  "5.jpeg").transform(new CropCircleTransformation()).into(imgAvatar);
+            }
+            Log.e("ERA1+2",  "type= "+type+ " userID="+userID + " grName "+userNAME);
 //            editName.setText(args.getString("name"));
 //            editCity.setText(args.getString("city"));
 //            Picasso.get().load(args.getString("url")).transform(new CropCircleTransformation()).into(img);
         }
+        Log.e("TYPEEEEEE",  "type= "+type + " NA"+userNAME);
         page = 0;
         if(mWebSocketClient==null || (mWebSocketClient!=null && !mWebSocketClient.isOpen())) {
            get = false;
            Log.e("ERA789","111");
-            arrDialog = new ArrayList<>();
+           arrDialog = new ArrayList<>();
            connectWebSocket();
         }
         else
             Log.e("ERA","7777777777777777");
-        adapter = new AdapterListDialog(getContext(), arrDialog);
+        adapter = new AdapterListDialog(getContext(), arrDialog, String.valueOf(userID));
         list.setAdapter(adapter);
 
 
@@ -169,58 +201,100 @@ public class dialogUser extends Fragment {
 
                 }
                 if(firstVisibleItem==0 && get && !teg) {
-//                    try {
-//                        sendInit.put("cmd", "getMessage");
-//                        Log.e("ERA88", "DA");
-//                        sendInit.put("data", new JSONObject().put("userID", "92085").put("user", "30220").put("page", newPage));
-//                        mWebSocketClient.send(sendInit.toString());
-//                        teg = true;
-//                    } catch (JSONException | NullPointerException e) {
-//                        e.printStackTrace();
-//                    }
+                        try {
+                            if(type.equals("1"))
+                                sendInit.put("cmd", "private");
+                            else    sendInit.put("cmd", "group");
+                            sendInit.put("cabinetID", Integer.parseInt(cabinetID));
+                            Log.e("newPAge", newPage+"");
+                            sendInit.put("page", newPage);
+                            mWebSocketClient.send(sendInit.toString());
+                            teg=true;
+                            swipe.setRefreshing(false);
+
+                        } catch (JSONException | NullPointerException e) {
+                            e.printStackTrace();
+                        }
+
                 }
             }});
 
+
+        editMessage.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!editMessage.getText().toString().isEmpty()) isWrite = true;
+                else isWrite=false;
+                if(mWebSocketClient.isOpen() && !editMessage.getText().toString().isEmpty() && isWrite && !onTick){
+
+                    Log.e("ERATick", String.valueOf(onTick));
+
+                    new CountDownTimer(6000, 1000) {
+                        public void onTick(long millisUntilFinished) {
+                            if(millisUntilFinished / 1000 == 5 ) {
+                                onTick = true;
+                                sendInit = new JSONObject();
+                                try {
+                                    sendInit.put("cmd", "sendStatus");
+                                    sendInit.put("cabinetID", Integer.parseInt(cabinetID));
+                                    sendInit.put("status", 1);
+                                    mWebSocketClient.send(sendInit.toString());;
+                                } catch (JSONException | NullPointerException e) {
+                                    e.printStackTrace();
+                                }}
+                        }
+                        public void onFinish() {
+                            onTick = false;
+                        }
+                    }.start(); }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+        });
 
         return v;
     }
 
     @Override
     public void onResume() {
-//        if(editMessage.hasFocus()) {
-//            adapter.notifyDataSetChanged();
-//            list.setSelection(list.getCount());}
-
-
         super.onResume();
     }
 
 
-    @OnClick({R.id.record_button, R.id.btnSend})
+    @OnClick({R.id.record_button, R.id.btnSend, R.id.btnSmile, R.id.imgBack})
     void onSaveClick(View view) {
         switch (view.getId()) {
             case R.id.btnSend:
                 if(!editMessage.getText().toString().isEmpty()) {
+                     messageEdit = editMessage.getText().toString();
+                    Log.e("ERA1234",messageEdit);
                     btnSend.setVisibility(View.GONE);
                     gifDwn.setVisibility(View.VISIBLE);
-                sendInit = new JSONObject();
-                    CountDownTimer myCountDown = new CountDownTimer(1000, 400) {
+
+                    CountDownTimer myCountDown = new CountDownTimer(450, 400) {
                         public void onTick(long millisUntilFinished) {
                         }
 
                         public void onFinish() {
+                            if(mWebSocketClient.isOpen()){
+                                sendInit = new JSONObject();
                             try {
                                 sendInit.put("cmd", "sendMessage");
-                                sendInit.put("message", editMessage.getText().toString());
+                                sendInit.put("message", messageEdit);
                                 sendInit.put("cabinetID", Integer.parseInt(cabinetID));
                                 sendInit.put("type", Integer.parseInt(type));
                                 mWebSocketClient.send(sendInit.toString());
-//                                swipeDwnld.setRefreshing(false);
                                 gifDwn.setVisibility(View.GONE);
                                 btnSend.setVisibility(View.VISIBLE);
                             } catch (JSONException | NullPointerException e) {
                                 e.printStackTrace();
-                            }
+                            }}
                         }
                     };
                     myCountDown.start();
@@ -242,6 +316,14 @@ public class dialogUser extends Fragment {
                     }
                 });
                 break;
+            case R.id.btnSmile:
+                    emojiPopup.toggle();
+                break;
+                case R.id.imgBack:
+                    startActivity(new Intent(getActivity(), Chat.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+                    getActivity().finish();
+
+                break;
 
         }
     }
@@ -249,7 +331,7 @@ public class dialogUser extends Fragment {
     private void connectWebSocket() {
         URI uri;
         try {
-            uri = new URI("ws://indigo24.site:33080/");
+            uri = new URI("ws://indigo24.xyz:33080/");
         } catch (URISyntaxException e) {
             e.printStackTrace();
             return;
@@ -264,7 +346,7 @@ public class dialogUser extends Fragment {
                 try {
                     sendInit.put("cmd", "init");
                     sendInit.put("userID", userID);
-                    sendInit.put("token", "4a84890cad83d81facb7eb075bbe74d50307bdce");
+                    sendInit.put("token", unique);
                     mWebSocketClient.send(sendInit.toString());
                 } catch (JSONException | NullPointerException e) {
                     e.printStackTrace();
@@ -279,12 +361,34 @@ public class dialogUser extends Fragment {
                     @Override
                     public void run() {
                         if(!message.isEmpty()){
-
+                            swipe.setRefreshing(true);
                             Log.e("ERA1+1", message);
                             Log.e("ERA1+2", cabinetID+ " "+type);
                             try {
                                 JSONObject js = new JSONObject(message);
 
+                                if(js.has("cmd") && js.getString("cmd").equals("newStatus")){
+
+                                        Log.e("Bekzat","1");
+                                        String typing = "\n печатает..";
+                                        final String name = tvName.getText().toString().replace(typing,"");
+
+                                        tvName.setText(name+typing);
+                                        gifTyping.setVisibility(View.VISIBLE);
+                                        CountDownTimer myCountDown = new CountDownTimer(6000, 1000) {
+                                            public void onTick(long millisUntilFinished) {
+                                            }
+
+                                            public void onFinish() {
+                                                tvName.setText(name);
+                                                gifTyping.setVisibility(View.GONE);
+                                            }
+                                        };
+                                        myCountDown.start();
+
+                                        swipe.setRefreshing(false);
+
+                                }
 
                                 if(!get && js.has("cmd") && (js.getString("cmd").equals("init"))) {
                                     try {
@@ -293,6 +397,7 @@ public class dialogUser extends Fragment {
                                         sendInit.put("cmd", "private");
                                         else    sendInit.put("cmd", "group");
                                         sendInit.put("cabinetID", Integer.parseInt(cabinetID));
+                                        sendInit.put("page", newPage);
                                         mWebSocketClient.send(sendInit.toString());
                                         swipe.setRefreshing(false);
 
@@ -303,10 +408,13 @@ public class dialogUser extends Fragment {
 
                                 if(js.has("cmd")  && js.has("insertedID") ){
                                     object obj = new object();
-                                    obj.setMsg(editMessage.getText().toString());
+                                    obj.setMsg(messageEdit);
                                     obj.setData(js.getString("date"));
                                     obj.setId(js.getString("insertedID"));
-                                    obj.setUserID("30220");
+                                    obj.setUserID(String.valueOf(userID));
+                                    if(arrUsers.size()>0 && type.equals("1")){
+                                        obj.setAvatar(arrUsers.get(0).getAvatar());
+                                    }
                                     arrDialog.add(obj);
                                     adapter.notifyDataSetChanged();
                                     list.setSelection(list.getCount());
@@ -314,9 +422,31 @@ public class dialogUser extends Fragment {
                                     swipe.setRefreshing(false);
                                 }
 
-                                if(js.has("cmd")  && js.has("members")){
-                                        Log.e("BEK","00");
+
+
+                                if(js.has("cmd")  && js.getString("cmd").equals("newMessage") ){
+                                    object obj = new object();
+                                    obj.setMsg(js.getString("message"));
+                                    obj.setData(js.getString("date"));
+                                    obj.setUserID(js.getString("fromID"));
+                                    obj.setId(js.getString("messageID"));
+                                    if(arrUsers.size()>0 && type.equals("1")){
+                                        obj.setAvatar(arrUsers.get(0).getAvatar());
+                                    }
+                                    arrDialog.add(obj);
+                                    adapter.notifyDataSetChanged();
+                                    list.setSelection(list.getCount());
+                                    swipe.setRefreshing(false);
+                                }
+
+
+
+                                if(js.has("cmd")  && (js.has("members") || js.has("messages"))){
+                                    Log.e("EEE123", "11117777");
                                     JSONArray jsArrayMembers = null;
+
+                                    if(js.has("members")){
+                                        teg=false;
                                     try {
                                         jsArrayMembers = js.getJSONArray("members");
                                     } catch (JSONException e) {
@@ -324,14 +454,24 @@ public class dialogUser extends Fragment {
                                     }
                                     if(jsArrayMembers.length()>0){
                                         for (int i=0;i<jsArrayMembers.length();i++) {
+                                            Log.e("ERA1237 Name",jsArrayMembers.getJSONObject(i).getString("name")+"");
+
+                                            if(js.getString("cmd").equals("private")){
+                                                Picasso.get().load(Interface.baseAVATAR+  jsArrayMembers.getJSONObject(i).getString("avatar")).transform(new CropCircleTransformation()).into(imgAvatar);
+                                                  tvName.setText(jsArrayMembers.getJSONObject(i).getString("name"));
+                                            }
                                             User user = new User(jsArrayMembers.getJSONObject(i).getString("userID"), jsArrayMembers.getJSONObject(i).getString("name"), jsArrayMembers.getJSONObject(i).getString("avatar"));
                                             arrUsers.add(user);
                                         }
-                                    }
+                                    }} else teg=true;
+                                    ArrayList<object>arrayList = new ArrayList<>();
+                                    if(teg)  {
 
+                                    arrayList = arrDialog;
+                                    arrDialog = new ArrayList<>();
+                                    }
                                     JSONArray jsArrayMessages = js.getJSONArray("messages");
                                     if(jsArrayMessages.length()>0){
-                                        Log.e("BEK","11");
                                         for(int i =jsArrayMessages.length()-1 ; i>=0; i--) {
                                             object obj = new object();
                                             obj.setMsg(jsArrayMessages.getJSONObject(i).getString("message"));
@@ -339,33 +479,41 @@ public class dialogUser extends Fragment {
                                             obj.setData(jsArrayMessages.getJSONObject(i).getString("date"));
                                             obj.setId(jsArrayMessages.getJSONObject(i).getString("ID"));
                                             obj.setUserID(jsArrayMessages.getJSONObject(i).getString("userID"));
-
-                                            Log.e("BEK","11 "+jsArrayMessages.getJSONObject(i).getString("message"));
+                                            if(arrUsers.size()>0 && type.equals("1")){
+                                                Log.e("ERR", arrUsers.size()+" !! "+arrUsers.get(0).getAvatar());
+                                                obj.setAvatar(arrUsers.get(0).getAvatar());
+                                            }
                                             arrDialog.add(obj);
                                         }
-
-                                        adapter = new AdapterListDialog(getActivity(), arrDialog);
-                                        list.setAdapter(adapter);
-                                        list.setSelection(list.getCount());
-                                        newPage=page+1;
+                                        if(teg) {
+                                        arrDialog.addAll(arrayList);
+                                            adapter = new AdapterListDialog(getContext(), arrDialog, String.valueOf(userID));
+                                            list.setAdapter(adapter);
+                                            list.setSelection(20);
+                                            newPage=newPage+1;
+                                        }
+                                        else  {
+                                            newPage=1;
+                                            adapter = new AdapterListDialog(getContext(), arrDialog, String.valueOf(userID));
+                                            list.setAdapter(adapter);
+                                            list.setSelection(list.getCount()-1);
+                                        }
+                                        teg=false;
                                         swipe.setRefreshing(false);
                                     }
                                 }
 
-
-                } catch (JSONException e) {
-                                e.printStackTrace();
-
+                } catch (JSONException e) { e.printStackTrace();
             }}}});}
 
             @Override
             public void onClose(int i, String s, boolean b) {
-                Log.i("Websocket", "Closed " + s);
+//                Log.i("Websocket", "Closed " + s);
             }
 
             @Override
             public void onError(Exception e) {
-                Log.i("Websocket", "Error " + e.getMessage());
+//                Log.i("Websocket", "Error " + e.getMessage());
             }
         };
         mWebSocketClient.connect();

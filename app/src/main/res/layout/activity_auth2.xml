@@ -69,6 +69,7 @@
                             android:paddingTop="10dp"
                             android:paddingEnd="80dp"
                             android:paddingBottom="10dp"
+                            android:textColor="@color/colorPrimary"
                             android:selectAllOnFocus="false"
                             android:typeface="monospace"
                             app:allowed_chars="1234567890+()_- "
