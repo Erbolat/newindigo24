@@ -52,7 +52,7 @@ import static com.indigo24.fragments.profileEditFR.openEdit;
 import static com.indigo24.requests.Interface.baseAVATAR;
 import static com.indigo24.requests.Interface.baseIMG;
 
-public class Profile extends AppCompatActivity implements View.OnClickListener {
+public class Profile extends AppCompatActivity  {
     @BindView(R.id.imgAvatar)
     ImageView imgAvatar;
     @BindView(R.id.tvName)
@@ -66,8 +66,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.contentFragment)
     FrameLayout contentFragment;
-    @BindView(R.id.ll)
-    LinearLayout ll;
     String userID, unique, avatar, mail, name, phone, city;
     SharedPreferences sPref;
     ExplosionField explosionField;
@@ -77,10 +75,16 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
         explosionField = ExplosionField.attach2Window(this);
-        ll.setVisibility(View.VISIBLE);
+        swipe.setVisibility(View.VISIBLE);
         contentFragment.setVisibility(View.GONE);
         openEdit= 0;
         getProfileData();
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipe.setRefreshing(false);
+            }
+        });
 
     }
 
@@ -90,6 +94,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         userID  = sPref.getString("id","");
         unique  = sPref.getString("unique","");
         phone  = sPref.getString("phone","");
+        Log.e("ERT", userID+""+unique);
         Retrofit.Builder builder=new Retrofit.Builder().addCallAdapterFactory(RxJava2CallAdapterFactory.create()).baseUrl(Interface.baseURL).addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit= builder.build();
         Interface intc = retrofit.create(Interface.class);
@@ -102,7 +107,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                     JSONObject jsonObject = new JSONObject(response.body().string());
                     if(jsonObject.has("success") && jsonObject.getBoolean("success")){
                         avatar = jsonObject.getString("avatar");
-                        Log.e("AVA11",avatar);
+
                         mail = jsonObject.getString("email");
                         name = jsonObject.getString("name");
                         if (jsonObject.has("city"))
@@ -143,7 +148,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     void onSaveClick(View view) {
         switch (view.getId()) {
             case R.id.btnEdit:
-                ll.setVisibility(View.GONE);
+                swipe.setVisibility(View.GONE);
                 contentFragment.setVisibility(View.VISIBLE);
                 Bundle b = new Bundle();
                 b.putString("name",name);
@@ -164,8 +169,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 editor.remove("phone");
                 editor.remove("unique");
                 editor.remove("pin");
+                editor.remove("UserData");
                 editor.apply();
                 editor.clear();
+
                 Intent intent = new Intent(Profile.this,SplashActivity.class);
                 startActivity(intent);
                 finish();
@@ -201,13 +208,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    @Override
-    public void onClick(View v) {
 
-
-
-
-    }
 
     @Override
     public void onBackPressed() {
@@ -216,7 +217,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         finish();
         }
         else {
-            ll.setVisibility(View.VISIBLE);
+            swipe.setVisibility(View.VISIBLE);
+            openEdit=0;
             contentFragment.setVisibility(View.GONE);
             getSupportFragmentManager().popBackStack();
             getProfileData();

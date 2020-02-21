@@ -1,12 +1,17 @@
 package com.indigo24;
 
+import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.indigo24.activities.SplashActivity;
+import com.indigo24.requests.Interface;
 import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketAdapter;
 import com.neovisionaries.ws.client.WebSocketException;
 import com.neovisionaries.ws.client.WebSocketFactory;
 import com.neovisionaries.ws.client.WebSocketFrame;
+import com.neovisionaries.ws.client.WebSocketListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,40 +23,21 @@ import java.util.Map;
 
 import javax.net.ssl.SSLContext;
 
+import static com.indigo24.MainApp.arrOnlines;
+import static com.indigo24.requests.Interface.TAG;
+
 public class ClientWebSocket {
 
-    private static final String TAG = "Websocket";
+
     private MessageListener listener;
     private String request;
-    public static WebSocket ws = null;
-    String open="";
-    public ClientWebSocket(MessageListener listener, String request) {
+    public static   WebSocket ws = null;
+
+    public ClientWebSocket(MessageListener listener) {
         this.listener = listener;
-        this.request = request;
-//        if(ws== null) {
-//            Log.e("ERA00","ERA00");
-//            connect();
-//        }
-//        else {
-//            Log.e("ERA11","ERA11");
-//        }
-
-
     }
-
-    public ClientWebSocket(String open){
-        this.open = open;
-//        if(ws==null)
-            connect();
-    }
-
-
-
-
-
     public void connect() {
         new Thread(() -> {
-
             if (ws != null) {
                 reconnect();
             } else {
@@ -62,7 +48,6 @@ public class ClientWebSocket {
                     ws = factory.createSocket("ws://indigo24.xyz:33080/");
                     ws.addListener(new SocketListener());
                     ws.connect();
-
                 } catch (WebSocketException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -72,9 +57,6 @@ public class ClientWebSocket {
                 }
             }
         }).start();
-
-
-
 
     }
 
@@ -102,11 +84,8 @@ public class ClientWebSocket {
         public void onConnected(WebSocket websocket, Map<String, List<String>> headers) throws Exception {
             super.onConnected(websocket, headers);
             Log.i(TAG, "onConnected");
-            if(open.equals("1")) {
+
             JSONObject sendInit = new JSONObject();
-            String request = null;
-//            Log.e("PP",Integer.parseInt(MainApp.userID)+"    11111111");
-//            Log.e("PP2",unique+" 111111111111111111");
             try {
                 sendInit.put("cmd", "init");
                 sendInit.put("userID", Integer.parseInt(MainApp.userID));
@@ -115,13 +94,36 @@ public class ClientWebSocket {
             } catch (JSONException | NullPointerException e) {
                 e.printStackTrace();
             }
-            Log.e("RE",request);
-            ws.sendText(request);}
+            ws.sendText(request);
+
         }
 
+        @SuppressLint("LongLogTag")
         public void onTextMessage(WebSocket websocket, String message) {
-            Log.e(TAG, "Message --> " + message);
+
             listener.onSocketMessage(message);
+            try {
+                JSONObject js = new JSONObject(message);
+                if(js.has("cmd") && (js.getString("cmd").equals("online")) || js.getString("cmd").equals("offline")) {
+                    if(arrOnlines.size()>0) {
+                        for (int i=0; i<arrOnlines.size(); i++) {
+                            if(!arrOnlines.get(i).equals(js.getString("userID")) && js.getString("cmd").equals("online"))
+                            arrOnlines.add(js.getString("userID"));
+                            else  if(arrOnlines.get(i).equals(js.getString("userID")) && js.getString("cmd").equals("offline"))
+                                arrOnlines.remove(i);
+                        }
+                    }
+                    else  if(js.getString("cmd").equals("online"))
+                        arrOnlines.add(js.getString("userID"));
+
+
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+//            Log.e(TAG+"class ClientWebsocket ", "Message --> " + message);
 
         }
 
@@ -158,10 +160,9 @@ public class ClientWebSocket {
     }
 
 
-    public interface MessageListener {
+    public interface MessageListener extends WebSocketListener {
         void onSocketMessage(String message);
     }
-
 
 
 

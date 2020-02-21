@@ -10,23 +10,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        tools:context=".MainActivity"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:context=".MainActivity">
 
         <ImageView
             android:id="@+id/iconBot"
             android:layout_width="130dp"
             android:layout_height="150dp"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:layout_marginRight="-28dp"
             android:scaleType="centerCrop"
-            android:layout_marginBottom="261dp"
             app:srcCompat="@drawable/icon_bot"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="311dp"
-            tools:layout_editor_absoluteY="290dp" />
+            tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/icon_wallet"
@@ -42,7 +38,7 @@
 
         <TextView
             android:id="@+id/tvProfile"
-            android:layout_width="80dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="false"
@@ -231,16 +227,16 @@
         <ImageView
             android:id="@+id/icon1"
             android:layout_width="80dp"
-            android:layout_height="60dp"
+            android:visibility="visible"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="3dp"
+            android:layout_height="60dp"
 
-            android:layout_marginBottom="423dp"
             app:srcCompat="@drawable/icon1"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="216dp"
-            tools:layout_editor_absoluteY="166dp" />
+            android:layout_alignTop="@+id/iconBot"
+            android:layout_alignParentEnd="true"
+
+
+            />
 
 
     </RelativeLayout>

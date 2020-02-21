@@ -16,12 +16,6 @@
         android:minHeight="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
-        android:id="@+id/list"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,6 +23,12 @@
         android:layout_below="@+id/toolbar"
         android:visibility="gone"
         android:id="@+id/container"/>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/list"/>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="60dp"

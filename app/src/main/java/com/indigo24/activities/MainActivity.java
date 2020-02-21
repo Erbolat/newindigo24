@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         explosionField = ExplosionField.attach2Window(this);
-        dialogUser.dialog = 0;
+        dialogUser.step = 0;
         ButterKnife.bind(this);
         imgWallet.setOnClickListener(this);
         imgProfile.setOnClickListener(this);
@@ -73,13 +73,8 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         images = new ImageView[]{findViewById(R.id.icon1), findViewById(R.id.icon2), findViewById(R.id.icon3), findViewById(R.id.icon4), findViewById(R.id.icon5), findViewById(R.id.icon6)};
         tvs = new TextView[]{findViewById(R.id.tv1), findViewById(R.id.tv2), findViewById(R.id.tv3), findViewById(R.id.tv4), findViewById(R.id.tv5), findViewById(R.id.tv6)};
 
-
         AppDatabase db = MainApp.getInstance().getDatabase();
         intDialog mIntDialog = db.mIntDialog();
-
-
-//        clientWebSocket.connect();
-
 
         if(mIntDialog.getAllDialogs().size()==0) {
 
@@ -89,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
             String msg[] = new String[]{"message3", "message2", "message4", "message5", "message1"};
             int msgIDs[] = new int[]{3, 2, 4, 5, 1};
             int status[] = new int[]{1, 1, 1, 1, 1};
-
 
             for (int i = 0; i < dates.length; i++) {
                 objDialog objDlg = new objDialog(toID[i], fromID[i], msgIDs[i], msg[i], dates[i], status[i]);

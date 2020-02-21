@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        android:layout_height="56dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary"
+        android:layout_gravity="center_vertical"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:gravity="center_vertical"
+        >
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/ic_back"
+            android:paddingLeft="8dp"
+            android:layout_marginEnd="16dp"
+            android:id="@+id/imgBack"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:text="Добавить .."
+            android:typeface="sans"
+            android:layout_marginRight="8dp"
+            android:id="@+id/tvName"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="100dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical|right"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:text="Далее"
+            android:typeface="sans"
+            android:layout_marginRight="8dp"
+            android:id="@+id/tvNext"/>
+    </LinearLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editSearch"
+
+        android:singleLine="true"
+        android:visibility="visible"
+        android:hint="поиск..."
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="10dp"
+        android:background="@drawable/white_back"
+        android:lines="1"
+        android:layout_margin="8dp"
+        android:textSize="16sp" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/list"/>
+</LinearLayout>

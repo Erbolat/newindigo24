@@ -32,17 +32,13 @@ import static com.indigo24.requests.Interface.baseIMG;
 
 public class AdapterListChat extends BaseAdapter {
     Context ctx;
-    LayoutInflater lInflater;
     ArrayList<object> objects;
     ImageView img;
-    TextView tvName, tvDate, tvLastMsg;
-    String type;
-    Map<String, String> map = new HashMap<String, String>();
-
+    TextView tvName, tvDate, tvLastMsg, tvCount;
     public AdapterListChat(Context context, ArrayList<object> obj) {
         ctx = context;
         objects = obj;
-        lInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
     }
 
 
@@ -69,27 +65,26 @@ public class AdapterListChat extends BaseAdapter {
 
         View view = convertView;
         if (view == null) {
-            view = lInflater.inflate(R.layout.item_list_chat, parent, false);
+            view =  LayoutInflater.from(ctx).inflate(R.layout.item_list_chat, parent, false);
         }
         tvName = view.findViewById(R.id.tvName);
-        tvDate = view.findViewById(R.id.tvDate);
+        tvCount = view.findViewById(R.id.tvCount);
         tvLastMsg = view.findViewById(R.id.tvLastMsg);
         img = view.findViewById(R.id.img);
-        Log.e("AVA",objects.get(position).getAvatar()+ "!"+objects.get(position).getTitle());
-        if(!objects.get(position).getAvatar().isEmpty() && objects.get(position).getAvatar().length()>3)
-            Picasso.get().load(Interface.baseAVATAR+objects.get(position).getAvatar()).transform(new CropCircleTransformation()).into(img);
-//            Glide.with(ctx).load(Interface.baseAVATAR+objects.get(position).getAvatar()).centerCrop().into(img);
-        else {
-            Drawable drawable = AppCompatResources.getDrawable(ctx, R.drawable.ic_person);
-            img.setImageDrawable(drawable);
-        }
-        tvName.setText(objects.get(position).getName());
 
-        @SuppressLint("SimpleDateFormat")
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm ");
-        Date updatedate = new Date(Integer.parseInt(objects.get(position).getData()) * 1000L);
-        tvDate.setText((format.format(updatedate)).replace(" ","\n")+"");
+
+        Picasso.get().load(Interface.baseAVATAR + objects.get(position).getAvatar()).transform(new CropCircleTransformation()).into(img);
+        tvName.setText(objects.get(position).getName());
         tvLastMsg.setText(objects.get(position).getLastMsg());
+
+        if(objects.get(position).getCount().isEmpty() || objects.get(position).getCount().equals("0") )
+            tvCount.setVisibility(View.GONE);
+        else  tvCount.setText(objects.get(position).getCount());
+//        @SuppressLint("SimpleDateFormat")
+//        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm ");
+//        Date updatedate = new Date(Integer.parseInt(objects.get(position).getData()) * 1000L);
+//        tvDate.setText((format.format(updatedate)).replace(" ","\n")+"");
+
 
 
         return view;

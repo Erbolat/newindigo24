@@ -29,6 +29,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.indigo24.ClientWebSocket;
+import com.indigo24.ExampleSocketConnection;
 import com.indigo24.MainApp;
 import com.indigo24.R;
 import com.indigo24.objects.objCountry;
@@ -207,13 +208,29 @@ public class Auth2 extends AppCompatActivity  {
                             SharedPreferences.Editor editor = settings.edit();
                             editor.putString( "phone", editPhone.getText().toString().replace("+","").replace("-","").replace(" ",""));
                             editor.putString( "unique", jsonObject.getString("unique"));
+                            editor.putString( "avatar", jsonObject.getString("avatar"));
+                            editor.putString( "name", jsonObject.getString("name"));
+                            MainApp.unique = jsonObject.getString("unique");
+                            MainApp.userID = jsonObject.getInt("ID")+"";
                             editor.putString( "id", jsonObject.getInt("ID")+"");
                             editor.putBoolean( "pin", jsonObject.getBoolean("pin"));
                             editor.commit();
                             editor.apply();
                             refresh();
-                            startActivity(new Intent(Auth2.this, MainActivity.class));
-                            finish();
+                            ExampleSocketConnection exampleSocketConnection = new ExampleSocketConnection(getApplicationContext());
+                            exampleSocketConnection.openConnection();
+                            CountDownTimer myCountDown = new CountDownTimer(800, 400) {
+                                public void onTick(long millisUntilFinished) {
+                                }
+
+                                public void onFinish() {
+                                    startActivity(new Intent(Auth2.this, MainActivity.class));
+                                    finish();
+
+                                }
+                            };
+                            myCountDown.start();
+
                         }catch (NullPointerException e){
                             refresh();
                             e.printStackTrace();

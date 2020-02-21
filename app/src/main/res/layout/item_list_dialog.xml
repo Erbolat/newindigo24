@@ -3,137 +3,215 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
+        android:id="@+id/llIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/llIn"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
         android:layout_marginRight="80dp"
-       >
+        android:orientation="horizontal"
+        android:visibility="gone">
+
         <ImageView
+            android:id="@+id/imgAvaIn"
             android:layout_width="40dp"
-            android:layout_marginLeft="8dp"
             android:layout_height="40dp"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/imgAvaIn"/>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginRight="5dp"
-        android:layout_height="wrap_content">
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="8dp" />
+
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="8dp"
-            android:orientation="vertical"
-            android:background="@drawable/background_message_oute"
-            >
-
+            android:layout_marginRight="5dp"
+            android:orientation="vertical">
             <TextView
-                android:id="@+id/tvMsgIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="dsdddd"
+                android:textSize="16sp"
+                android:typeface="sans"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginBottom="3dp"
+                android:id="@+id/tvTitle"/>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minHeight="35dp"
+                android:background="@drawable/chat_back1"
+                android:orientation="vertical"
+                android:layout_marginLeft="3dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:paddingRight="8dp">
 
+                <TextView
+                    android:id="@+id/tvMsgIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="14dp"
+                    android:paddingRight="8dp"
+                    android:text="dsadsadsad"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:typeface="sans" />
+
+                <TextView
+                    android:id="@+id/tvDateIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/tvMsgIn"
+                    android:layout_gravity="right"
+                    android:layout_toRightOf="@+id/tvMsgIn"
+                    android:gravity="right"
+                    android:paddingLeft="12dp"
+                    android:text="20.20.2020"
+                    android:textAlignment="textEnd"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:typeface="sans"
+                    android:paddingBottom="3dp"
+                    tools:ignore="RtlCompat" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginLeft="5dp"
+            android:gravity="right"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitleOut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="3dp"
+                android:gravity="right"
+                android:paddingLeft="8dp"
+                android:paddingRight="13dp"
+                android:textAlignment="viewEnd"
                 android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:paddingLeft="14dp"
-                android:paddingRight="8dp"
+                android:textColor="@color/colorPrimary"
+
                 android:textSize="14sp"
+                android:textStyle="bold"
                 android:typeface="sans" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:paddingLeft="12dp"
-                android:textSize="12sp"
-                android:id="@+id/tvDateIn"
-                android:textAllCaps="false"
-                android:textStyle="italic"
-                android:visibility="gone"
-                android:typeface="sans"
-                android:layout_gravity="right"
-                android:gravity="right"
-                android:textAlignment="textEnd"
-                android:layout_alignBottom="@+id/tvMsgIn"
-                android:layout_toRightOf="@+id/tvMsgIn"
-                android:text="20.20.2020"
-                tools:ignore="RtlCompat" />
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="58dp"
+                android:background="@drawable/chat_back2"
+                android:gravity="right|center_vertical"
+                android:minHeight="35dp"
+                android:orientation="vertical"
+                android:textAlignment="viewEnd">
+
+                <TextView
+                    android:id="@+id/tvMsgOut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="13dp"
+
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:typeface="sans" />
+
+                <TextView
+                    android:id="@+id/tvDateOut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/tvMsgIn"
+                    android:layout_gravity="right"
+                    android:layout_toRightOf="@+id/tvMsgIn"
+                    android:gravity="right"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="8dp"
+                    android:text="20.20.2020"
+                    android:textAlignment="textEnd"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:typeface="sans"
+                    android:paddingBottom="3dp"
+                     />
+            </LinearLayout>
+
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/imgAvaOut"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right|bottom"
+
+            android:layout_marginLeft="-55dp" />
+
     </LinearLayout>
-    </LinearLayout>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifTyping"
+        android:layout_width="60dp"
+        android:visibility="gone"
+        android:layout_height="40dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginBottom="2dp"
+        android:scaleType="fitXY"
+        android:background="@drawable/background_message_in"
+        android:layout_gravity="left"
+        android:src="@drawable/typp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/llOut"
-        android:layout_marginTop="10dp"
+        android:padding="8dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
         android:orientation="horizontal"
-        android:layout_marginLeft="80dp"
-        >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_gravity="right"
-        android:gravity="right"
-        android:layout_marginLeft="5dp"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
+        android:id="@+id/llSystem">
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="55dp"
-            android:layout_gravity="right"
-            android:gravity="right"
-            android:orientation="vertical"
-            android:background="@drawable/background_message_in"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-            android:layout_gravity="right"
-                android:gravity="right"
-                android:textAlignment="viewStart"
-                android:paddingRight="13dp"
-                android:paddingLeft="8dp"
-                android:id="@+id/tvMsgOut"
-                android:textSize="14sp"
-                android:textAllCaps="false"
-                android:typeface="sans"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:paddingLeft="12dp"
-                android:textSize="12sp"
-                android:id="@+id/tvDateOut"
-                android:textAllCaps="false"
-                android:visibility="gone"
-                android:textStyle="italic"
-                android:typeface="sans"
-                android:layout_gravity="right"
-                android:gravity="right"
-                android:paddingRight="8dp"
-                android:textAlignment="textEnd"
-                android:layout_alignBottom="@+id/tvMsgIn"
-                android:layout_toRightOf="@+id/tvMsgIn"
-                android:text="20.20.2020"/>
-        </LinearLayout>
-
-    </LinearLayout>
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="-55dp"
-            android:layout_gravity="right|center_vertical"
-            android:id="@+id/imgAvaOut"/>
+            android:id="@+id/tvSystem"
+            android:padding="8dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:text="Создан ЧАТ"
+            android:background="@drawable/chat_back2"/>
 
     </LinearLayout>
 </LinearLayout>

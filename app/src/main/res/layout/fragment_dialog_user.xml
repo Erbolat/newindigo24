@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerInside" />
 <RelativeLayout
     android:layout_width="match_parent"
 
@@ -25,7 +25,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
     <LinearLayout
-        android:id="@+id/toolbar"
         android:layout_height="56dp"
         android:layout_width="match_parent"
         android:orientation="horizontal"
@@ -38,10 +37,15 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_back"
+            app:srcCompat="@drawable/ic_back"
             android:paddingLeft="8dp"
             android:layout_marginEnd="16dp"
             android:id="@+id/imgBack"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/llCabinet"
+            android:layout_height="wrap_content">
         <ImageView
             android:layout_width="40dp"
             android:scaleType="centerInside"
@@ -58,7 +62,7 @@
             android:typeface="sans"
             android:layout_marginRight="8dp"
             android:id="@+id/tvName"/>
-
+        </LinearLayout>
 
     </LinearLayout>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -80,12 +84,11 @@
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/gifTyping"
             android:layout_width="60dp"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="4dp"
             android:layout_marginBottom="2dp"
-            android:scaleType="fitXY"
+            android:scaleType="centerInside"
             android:visibility="gone"
-            android:background="@drawable/background_message_in"
             android:layout_gravity="left|bottom"
             android:src="@drawable/typing" />
     </FrameLayout>
@@ -97,33 +100,101 @@
         android:id="@+id/newMessageBlock"
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
+        android:background="@color/white"
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
-            android:background="@color/grey"
-            android:layout_marginTop="5dp"
+            android:background="@color/colorPrimary"
             android:orientation="horizontal"
-            android:layout_height="2dp"/>
+            android:layout_height="1dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:gravity="center_vertical"
+            android:layout_gravity="center"
             android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/btnSmile"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_gravity="left|center_vertical"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                app:srcCompat="@drawable/ic_smile" />
+            <ImageButton
+                android:id="@+id/btnSendAudioFile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="13dp"
+                android:scaleType="fitCenter"
+                android:tint="@color/white"
+                android:visibility="gone"
+                app:srcCompat="@drawable/recv_ic_mic" />
             <com.vanniktech.emoji.EmojiEditText
                 android:id="@+id/messageInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:maxLines="5"
                 android:background="@drawable/background_add_lents_inputs"
                 android:hint="Сообщение"
+                android:paddingVertical="10dp"
+
                 android:inputType="textCapSentences|textMultiLine"
-                android:paddingVertical="15dp"
-                android:paddingLeft="80dp"
-                android:paddingRight="80dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:layout_marginRight="60dp"
                 android:scrollbars="vertical"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
+
+
+            <ImageButton
+                android:id="@+id/btnSend"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="-55dp"
+                android:background="@color/white"
+                android:padding="6dp"
+                android:scaleType="centerInside"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_paper_plane" />
+
+
+            <com.devlomi.record_view.RecordButton
+                android:id="@+id/record_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="-55dp"
+                android:background="@drawable/add_chat_background"
+                android:padding="13dp"
+                android:scaleType="fitCenter"
+                android:tint="@color/white"
+                android:visibility="visible"
+
+                app:srcCompat="@drawable/recv_ic_mic" />
+
+            <com.devlomi.record_view.RecordView
+                android:id="@+id/record_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:layout_alignParentBottom="true"
+                app:counter_time_color="#ff0000"
+                app:slide_to_cancel_arrow="@drawable/recv_ic_arrow"
+                app:slide_to_cancel_arrow_color="#000000"
+                app:slide_to_cancel_bounds="8dp"
+                app:slide_to_cancel_margin_right="10dp"
+                app:slide_to_cancel_text="Slide To Cancel" />
+
+
 
         </LinearLayout>
 
@@ -132,40 +203,41 @@
             android:layout_gravity="bottom"
             android:gravity="bottom"
             android:layout_width="match_parent"
-            android:layout_height="66dp">
+
+            android:layout_height="wrap_content">
 
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginTop="22dp"
                 android:layout_marginEnd="5dp"
+
                 android:layout_toStartOf="@+id/record_button"
                 android:layout_weight="1">
 
-                <ImageButton
-                    android:id="@+id/btnSmile"
-                    android:layout_width="25dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="left"
-                    android:layout_weight="0"
-                    android:layout_marginBottom="4dp"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitCenter"
-                    android:layout_marginLeft="8dp"
-                    app:srcCompat="@drawable/ic_smile" />
+
 
                 <ImageButton
                     android:id="@+id/buttonSelectTypeMessageAdd"
                     android:layout_width="25dp"
                     android:layout_height="30dp"
                     android:layout_gravity="right"
-                    android:layout_weight="0"
                     android:layout_marginLeft="40dp"
                     android:visibility="gone"
                     android:background="@color/colorPrimary"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/ic_attachment" />
             </FrameLayout>
+
+
+
+
+
+
+
+
+
+
             <ImageButton
                 android:id="@+id/cameraButton"
                 android:layout_width="30dp"
@@ -178,19 +250,8 @@
                 android:layout_gravity="right|center_vertical"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
+                android:visibility="gone"
                 app:srcCompat="@drawable/ic_camera" />
-            <ImageButton
-                android:id="@+id/btnSend"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="8dp"
-                android:padding="14dp"
-                android:scaleType="fitCenter"
-                android:background="@color/white"
-                android:visibility="visible"
-                app:srcCompat="@drawable/ic_paper_plane" />
             <pl.droidsonroids.gif.GifImageView
                 android:id="@+id/gifDwn"
                 android:layout_width="50dp"
@@ -201,37 +262,12 @@
                 android:layout_marginBottom="4dp"
                 android:paddingRight="8dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/loadin"
+                android:src="@drawable/typp"
                 android:visibility="gone"
                  />
 
-            <com.devlomi.record_view.RecordButton
-                android:id="@+id/record_button"
-                android:layout_width="55dp"
-                android:visibility="gone"
-                android:layout_height="55dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="-4dp"
-                android:background="@drawable/add_chat_background"
-                android:scaleType="centerInside"
-                app:mic_icon="@drawable/recv" />
 
-            <com.devlomi.record_view.RecordView
-                android:id="@+id/record_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_alignParentBottom="true"
-                android:layout_toLeftOf="@id/record_button"
-                app:counter_time_color="#ff0000"
-                app:slide_to_cancel_arrow="@drawable/recv_ic_arrow"
-                app:slide_to_cancel_arrow_color="#000000"
-                app:slide_to_cancel_bounds="8dp"
-                app:slide_to_cancel_margin_right="10dp"
-                app:slide_to_cancel_text="Slide To Cancel" />
+
 
 
         </RelativeLayout>

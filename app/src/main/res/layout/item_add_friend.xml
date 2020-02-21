@@ -13,20 +13,21 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="70dp"
-            android:src="@drawable/logo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_person"
             android:layout_gravity="center"
-            android:id="@+id/img"/>
+            android:scaleType="centerInside"
+            android:id="@+id/imgAva"/>
 
 
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:paddingStart="16dp"
+            android:paddingStart="10dp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:orientation="vertical">
@@ -37,6 +38,8 @@
                 android:text="Name"
                 android:textSize="16sp"
                 android:typeface="sans"
+                android:layout_marginRight="60dp"
+                android:lines="1"
                 android:textColor="@color/white"
                 android:id="@+id/tvName"/>
 
@@ -45,11 +48,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Phone"
+                android:layout_marginRight="60dp"
+                android:layout_marginTop="20dp"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:typeface="sans" />
 
-        </LinearLayout>
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:paddingLeft="16dp"
+                android:paddingVertical="6dp"
+                android:layout_gravity="right|center"
+                android:scaleType="centerInside"
+                android:id="@+id/imgStatus"/>
+
+        </FrameLayout>
 
     </LinearLayout>
 </LinearLayout>

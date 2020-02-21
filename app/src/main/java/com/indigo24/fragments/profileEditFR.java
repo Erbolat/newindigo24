@@ -87,10 +87,10 @@ public class profileEditFR extends Fragment {
 
     @BindView(R.id.editUsername)
     EditText editName;
-//    @BindView(R.id.swipe)
-//    SwipeRefreshLayout swipe;
-    @BindView(R.id.imgAVA)
-    ImageView imgAVA;
+    @BindView(R.id.swipe)
+    SwipeRefreshLayout swipe;
+    @BindView(R.id.imgAva)
+    ImageView imgAva;
     @BindView(R.id.editCity)
     EditText editCity;
     @BindView(R.id.btnSave)
@@ -108,7 +108,7 @@ public class profileEditFR extends Fragment {
         View v = inflater.inflate(R.layout.edit_profile, container, false);
         ButterKnife.bind(this, v);
         openEdit = 1;
-       // requestMultiplePermissions();
+        requestMultiplePermissions();
         SharedPreferences sPref = getContext().getSharedPreferences("UserData", getContext().MODE_PRIVATE);
         userID = sPref.getString("id", "");
         unique = sPref.getString("unique", "");
@@ -117,16 +117,21 @@ public class profileEditFR extends Fragment {
         if (args != null) {
             editName.setText(args.getString("name"));
             editCity.setText(args.getString("city"));
-            Picasso.get().load(args.getString("url")).transform(new CropCircleTransformation()).into(imgAVA);
+            Picasso.get().load(args.getString("url")).transform(new CropCircleTransformation()).into(imgAva);
         }
 
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipe.setRefreshing(false);
+            }
+        });
         return v;
     }
 
-    @OnClick({R.id.btnSave, R.id.imgAVA})
+    @OnClick({R.id.btnSave, R.id.imgAva})
     void onSaveClick(View view) {
         switch (view.getId()) {
-
             case R.id.btnSave:
                 name = editName.getText().toString();
                 Log.e("VV66","VV4");
@@ -136,8 +141,7 @@ public class profileEditFR extends Fragment {
                 else
                     Toast.makeText(getContext(), "Имя не может быть пустым", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.img:
-                Log.e("VV22222222","VV111");
+            case R.id.imgAva:
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(galleryIntent, GALLERY);
@@ -167,19 +171,19 @@ public class profileEditFR extends Fragment {
                     Matrix matrix = new Matrix();
                     matrix.setRotate(degrees);
                     bOutput = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-                    imgAVA.setImageBitmap(bOutput);
+                    imgAva.setImageBitmap(bOutput);
                     uploadImage(bOutput);
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(getActivity(), "Failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Failed!", Toast.LENGTH_SHORT).show();
                 }
             }
         }
 
     }
     private void uploadImage(final Bitmap bitmap){
-//        swipe.setRefreshing(true);
+        swipe.setRefreshing(true);
 
         VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, upload_URL,
                 new com.android.volley.Response.Listener<NetworkResponse>() {
@@ -189,22 +193,22 @@ public class profileEditFR extends Fragment {
                         try {
                             JSONObject jsonObject = new JSONObject(new String(response.data));
                             if(jsonObject.has("success") && jsonObject.getBoolean("success")) {
-                            Toast.makeText(getActivity(), "Успешно!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Успешно!", Toast.LENGTH_SHORT).show();
                             }
                             else if(jsonObject.has("success") && !jsonObject.getBoolean("success") && jsonObject.has("message"))
-                            Toast.makeText(getActivity(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-//                            swipe.setRefreshing(false);
+                            Toast.makeText(getContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                            swipe.setRefreshing(false);
                         } catch (JSONException e) {
                             e.printStackTrace();
-//                            swipe.setRefreshing(false);
+                            swipe.setRefreshing(false);
                         }
                     }
                 },
                 new com.android.volley.Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), "Ошибка!", Toast.LENGTH_SHORT).show();
-//                        swipe.setRefreshing(false);
+                        Toast.makeText(getContext(), "Ошибка!", Toast.LENGTH_SHORT).show();
+                        swipe.setRefreshing(false);
                     }
                 }) {
             @Override
@@ -227,7 +231,7 @@ public class profileEditFR extends Fragment {
                 0,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        rQueue = Volley.newRequestQueue(getActivity());
+        rQueue = Volley.newRequestQueue(getContext());
         rQueue.add(volleyMultipartRequest);
     }
 

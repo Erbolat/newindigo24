@@ -2,7 +2,7 @@ package com.indigo24.objects;
 
 public class object {
     String id, logo, title, comission, count,userID;
-    String account, amount, data, status;
+    String account, amount, data, status, isOnline;
     int cabinetID;
     String avatar,from,to,type,name,description, lastMsg, msg, inOut;
 
@@ -168,5 +168,13 @@ public class object {
 
     public void setUserID(String userID) {
         this.userID = userID;
+    }
+
+    public String getIsOnline() {
+        return isOnline;
+    }
+
+    public void setIsOnline(String isOnline) {
+        this.isOnline = isOnline;
     }
 }

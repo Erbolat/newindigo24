@@ -35,7 +35,6 @@ public class AdapterHistory extends BaseAdapter {
         ctx = context;
         objects = obj;
         this.type = type;
-        lInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 
@@ -61,7 +60,7 @@ public class AdapterHistory extends BaseAdapter {
 
         View view = convertView;
         if (view == null) {
-            view = lInflater.inflate(R.layout.item_history, parent, false);
+            view =  LayoutInflater.from(ctx).inflate(R.layout.item_history, parent, false);
         }
         TextView tvSumm = view.findViewById(R.id.tvSumm);
         TextView tvName1 = view.findViewById(R.id.tvName1);

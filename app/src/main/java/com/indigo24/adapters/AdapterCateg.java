@@ -32,7 +32,7 @@ public class AdapterCateg extends BaseAdapter {
         ctx = context;
         objects = obj;
         this.type = type;
-        lInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
     }
 
 
@@ -58,7 +58,7 @@ public class AdapterCateg extends BaseAdapter {
 
         View view = convertView;
         if (view == null) {
-            view = lInflater.inflate(R.layout.item_categ, parent, false);
+            view = LayoutInflater.from(ctx).inflate(R.layout.item_categ, parent, false);
         }
         tvTitle = view.findViewById(R.id.tvTitle);
         tvCount = view.findViewById(R.id.tvCount);

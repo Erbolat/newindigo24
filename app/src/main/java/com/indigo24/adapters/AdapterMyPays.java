@@ -36,8 +36,7 @@ public class AdapterMyPays extends BaseAdapter {
     public AdapterMyPays(Context context, ArrayList<myPay> MyPay) {
         ctx = context;
         objects = MyPay;
-        lInflater = (LayoutInflater) ctx
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -66,7 +65,7 @@ public class AdapterMyPays extends BaseAdapter {
         // используем созданные, но не используемые view
         View view = convertView;
         if (view == null) {
-            view = lInflater.inflate(R.layout.listed_for_my_pays, parent, false);
+            view =  LayoutInflater.from(ctx).inflate(R.layout.listed_for_my_pays, parent, false);
         }
 
 

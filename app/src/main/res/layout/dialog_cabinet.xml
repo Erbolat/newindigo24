@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:text="Написать личное сообщение"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/tvChat"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Назначить админом"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/tvAdmin"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textAlignment="center"
+        android:text="Удалить из группы"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/tvDelete"/>
+
+</LinearLayout>
